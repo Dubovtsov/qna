@@ -7,15 +7,6 @@ RSpec.describe AnswersController, type: :controller do
   # let!(:question) { Question.create!(title: 'First', body: 'second') }
   # let(:answer) { Answer.create!(body: 'answer', question_id: 1) }
 
-  describe 'Association with the question' do
-
-    it 'test' do
-      # post :create, params: { question: { id: 1, title: 'news', body: 'new body' } }
-      # post :create, params: { answer: { body: 'new body', question_id: 1 } }
-
-      should belong_to(:questions)
-    end
-  end
   #
   # describe 'GET #index' do
   #   let(:questions) { create_list(:answer, 3) }
@@ -43,17 +34,17 @@ RSpec.describe AnswersController, type: :controller do
   #   end
   # end
   # #
-  # describe 'GET #new' do
-  #   before { get :new }
-  #
-  #   it 'assigns a new Answer to @answer' do
-  #     expect(assigns(:answer)).to be_a_new(Answer)
-  #   end
-  #
-  #   it 'renders new view' do
-  #     expect(response).to render_template :new
-  #   end
-  # end
+  describe 'GET #new' do
+    before { get :new, params: { id: 7, body: '12312', question_id: question.id } }
+
+    it 'assigns a new Answer to @answer' do
+      expect(assigns(:answer)).to be_a_new(Answer)
+    end
+
+    it 'renders new view' do
+      expect(response).to render_template :new
+    end
+  end
   #
   # describe 'GET #edit' do
   #   before { get :edit, params: { id: answer } }
@@ -67,29 +58,40 @@ RSpec.describe AnswersController, type: :controller do
   #   end
   # end
 
-  # describe 'POST #create' do
-  #   context 'with valid attributes' do
-  #     it 'saves a new answer in the datebase' do
-  #       count = Answer.count
-  #       expect { post :create, params: { answer: attributes_for(:answer) } }.to change(Answer, :count).by(1)
-  #     end
-  #
-  #     it 'redirects to show view' do
-  #       post :create, params: { answer: attributes_for(:answer) }
-  #       expect(response).to redirect_to assigns(:answer)
-  #     end
-  #   end
-  #
-  #   context 'with invalid attributes' do
-  #     it 'does not save the answer' do
-  #       expect { post :create, params: { answer: attributes_for(:answer, :invalid) } }.to_not change(Answer, :count)
-  #     end
-  #     it 're-renders new view' do
-  #       post :create, params: { answer: attributes_for(:answer, :invalid) }
-  #       expect(response).to render_template :new
-  #     end
-  #   end
-  # end
+  describe 'POST #create' do
+    context 'with valid attributes' do
+      test "saves a new answer in the datebase" do
+        assert_difference('Answer.count') do
+          post question_answer_url(@question.answer), params: { question: {
+            title: 'First',
+            body: 'second'
+          }}
+        end
+        it 'saves a new answer in the datebase' do
+          count = Answer.count
+          expect { post :create, params: { answer: attributes_for(:answer) } }.to change(Answer, :count).by(1)
+        end
+
+        it 'redirects to show view' do
+          post :create, params: { answer: attributes_for(:answer) }
+          expect(response).to redirect_to assigns(:answer)
+        end
+
+        # assert_redirected_to author_book_url(Book.last.author, Book.last)
+      end
+    end
+  end
+
+    context 'with invalid attributes' do
+      it 'does not save the answer' do
+        expect { post :create, params: { answer: attributes_for(:answer, :invalid) } }.to_not change(Answer, :count)
+      end
+
+      it 're-renders new view' do
+        post :create, params: { answer: attributes_for(:answer, :invalid) }
+        expect(response).to render_template :new
+      end
+    end
   #
   # describe 'PATCH #update' do
   #   context 'with valid attributes' do
