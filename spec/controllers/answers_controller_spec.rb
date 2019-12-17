@@ -2,9 +2,11 @@ require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
   let(:question) { create :question }
-  let!(:answer) { create :answer, question: question }
-  let!(:answer) { create :answer, question: question }
+  let(:answer) { create :answer, question: question }
 
+
+  # let(:answer) { create :answer, question: question }
+  #
   # let!(:question) { Question.create!(title: 'First', body: 'second') }
   # let(:answer) { Answer.create!(body: 'answer', question_id: 1) }
 
@@ -62,23 +64,8 @@ RSpec.describe AnswersController, type: :controller do
   describe 'POST #create' do
 
     context 'with valid attributes' do
-
-            # it 'saves a new answer in db' do
-            #   expect { post :create, params: { question_id: question, answer: attributes_for(:answer) }, format: :js }.to change(question.answers, :count).by(1)
-            # end
-            #
-            # it 'created answer belongs to current_user' do
-            #   post :create, params: { question_id: question, answer: attributes_for(:answer) }, format: :js
-            #   expect(assigns(:answer).user).to eq user
-            # end
-            #
-            # it 'redirects to show view' do
-            #   post :create, params: { question_id: question, answer: attributes_for(:answer) }, format: :js
-            #   expect(response).to render_template :create
-            # end
-
       it 'saves a new answer in the datebase' do
-        # byebug
+        byebug
         expect { post :create, params: { question_id: question, answer: attributes_for(:answer) } }.to change(question.answers, :count).by(1)
       end
 
@@ -86,10 +73,10 @@ RSpec.describe AnswersController, type: :controller do
         #   expect { post :create, params: { answer: attributes_for(:answer) } }.to change(Answer, :count).by(1)
         # end
 
-        it 'redirects to show view' do
-          post :create, params: { question_id: question, answer: attributes_for(:answer) }
-          expect(response).to redirect_to assigns(:question)
-        end
+      it 'redirects to show view' do
+        post :create, params: { question_id: question, answer: attributes_for(:answer) }
+        expect(response).to redirect_to assigns(:question)
+      end
 
     end
 

@@ -16,8 +16,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = Answer.new(answer_params)
-    pp @answer
-    pp @answer.errors
+
     if @answer.save
       pp @answer
       pp @answer.errors
