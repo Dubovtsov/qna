@@ -1,5 +1,6 @@
 class AnswersController < ApplicationController
   before_action :load_answer, only: [:show, :edit, :update, :destroy]
+  before_action :load_answer, only: [:show, :edit, :update, :destroy]
   # def index
   #   @answers = Answer.all
   # end
@@ -18,12 +19,8 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
 
     if @answer.save
-      pp @answer
-      pp @answer.errors
       redirect_to @question
     else
-      pp @answer
-      pp @answer.errors
       render :new
     end
   end
@@ -46,6 +43,10 @@ class AnswersController < ApplicationController
 
   def load_answer
     @answer = Answer.find(params[:id])
+  end
+
+  def load_question
+    @question = Question.find(params[:question_id])
   end
 
   def answer_params
