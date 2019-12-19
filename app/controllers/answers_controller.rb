@@ -1,22 +1,13 @@
 class AnswersController < ApplicationController
-  before_action :load_answer, only: [:show, :edit, :update, :destroy]
-  before_action :load_answer, only: [:show, :edit, :update, :destroy]
-  # def index
-  #   @answers = Answer.all
-  # end
+  before_action :find_question, only: %i[new create]
+  before_action :load_answer, only: %i[show edit update destroy]
 
   def new
     @answer = Answer.new
   end
-  #
-  # def show
-  # end
-  #
-  # def edit
-  # end
 
   def create
-    @answer = Answer.new(answer_params)
+    @answer = @question.answers.new(answer_params)
 
     if @answer.save
       redirect_to @question
@@ -24,15 +15,6 @@ class AnswersController < ApplicationController
       render :new
     end
   end
-
-  # def update
-  #   @answer.update(answer_params)
-  #   if @answer.save
-  #     redirect_to @question
-  #   else
-  #     render :edit
-  #   end
-  # end
 
   def destroy
     @answer.destroy
@@ -45,7 +27,7 @@ class AnswersController < ApplicationController
     @answer = Answer.find(params[:id])
   end
 
-  def load_question
+  def find_question
     @question = Question.find(params[:question_id])
   end
 
