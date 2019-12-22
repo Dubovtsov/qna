@@ -17,4 +17,13 @@ feature 'User can view the question and answer to it', %q{
     expect(page).to have_content(answers.first.body)
     expect(page).to have_content(answers.last.body)
   end
+
+  scenario 'asks a question' do
+    fill_in 'Body', with: 'Answer first'
+    click_on 'Reply'
+
+    expect(page).to have_content 'Your question successfully created.'
+    expect(page).to have_content 'Test question'
+    expect(page).to have_content 'Answer first'
+  end
 end
