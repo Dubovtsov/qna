@@ -8,5 +8,6 @@ table
 
   - @questions.each do |question|
     tr
-      td= question.title
+      td
+        a= link_to question.title, question_path(question)
       td= question.body

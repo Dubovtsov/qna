@@ -25,6 +25,15 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 
 gem 'slim-rails'
+
+gem "twitter-bootstrap-rails"
+gem 'sprockets-rails'
+gem 'jquery-rails'
+
+# ICONS
+gem 'material_icons'
+
+gem 'octicons_helper'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

@@ -1,0 +1,11 @@
+nav.shadow-sm.navbar.navbar-dark
+  div
+    = link_to 'QnA'
+    span.navbar-text
+      - if user_signed_in?
+        = link_to "#{t('.logout')}", destroy_user_session_path, method: :delete, class: "text-white"
+
+      - else
+        = link_to "#{t('signup')}", new_user_registration_path
+        |  |
+        = link_to "#{t('login')}", user_session_path

@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+questions = Question.create([{title: 'first question', body: 'Язык HTML - язык…'},
+                             {title: 'second question', body: 'Ruby'},
+                             {title: 'third question', body: 'Rails'},
+                             {title: 'fourth question', body: 'JS'}])
+
+Answer.create([{body: 'программирования', question_id: questions[0].id},
+               {body: 'разметки страницы', question_id: questions[0].id},
+               {body: 'общения', question_id: questions[0].id}])

@@ -1,0 +1,157 @@
+ru:
+
+  hello: "Привет, %{name}"
+
+  helpers:
+    submit:
+      test:
+        create: "Создать тест"
+        update: "Обновить тест"
+      question:
+        create: "Создать вопрос"
+        update: "Обновить вопрос"
+      answer:
+        create: "Создать ответ"
+        update: "Обновить ответ"
+      category:
+        create: "Создать категорию"
+        update: "Обновить категорию"
+
+    label:
+      test:
+        title: "Название"
+        level: "Уровень"
+        category_id: "Категория"
+      question:
+        body: "Содержание"
+      answer:
+        body: "Содержание"
+        correct: "Правильный"
+      category:
+        title: "Название"
+
+    select:
+      prompt: "Выберите из списка"
+
+  layouts:
+    header:
+      logout: "Выход"
+      welcome_user_html: 'Добро пожаловать, <b>%{email}</b>'
+#      welcome_user_html: 'Добро пожаловать, '
+
+  shared:
+    errors:
+      header:
+        one: "Обнаружена %{count} ошибка"
+        other: "Обнаружено %{count} ошибки"
+        few: "Обнаружено %{count} ошибки"
+        many: "Обнаружено %{count} ошибок"
+
+  tests:
+    index:
+      header: "Доступные тесты"
+      title: "Название"
+      level: "Уровень"
+      category: "Категория"
+      number_of_questions: "Вопросов в тесте"
+    test:
+      start: "Старт"
+
+  test_passages:
+    result:
+      header: "Тест %{title} завершён!"
+
+    show:
+      header: "Прохождение %{title}"
+      next: "Следующий"
+      gist_question: "Cохранить вопрос в гист"
+    gist:
+      success: '%{url} успешно сохранен!'
+      failure: 'Во время сохранения gist произошла ошибка'
+
+  badges:
+    index:
+      header: "Доступные награды"
+
+  user_badges:
+    index:
+      header: "Мои награды"
+
+  feedbacks:
+    new:
+      send: "Отправить"
+
+  admin:
+    nav:
+      logout: "Выход"
+      welcome_admin_html: 'Добро пожаловать, <b class="nav-admin user-email">%{email}</b>!'
+
+    tests:
+      create:
+        success: "Тест успешно создан."
+      index:
+        header: "Список тестов"
+        new: "Новый тест"
+        title: "Название"
+        level: "Уровень"
+        category: "Категория"
+        number_of_questions: "Вопросов в тесте"
+      new:
+        header: "Создать новый тест"
+      destroy:
+        success: "Тест успешно удалён."
+      show:
+        level: "Уровень"
+        header: "Вопросы"
+        new_question: "Добавить новый вопрос"
+
+      form_inline:
+          submit: "ОК"
+
+    categories:
+      index:
+        header: "Список категорий"
+        new: "Добавить категорию"
+      edit:
+        title: "Редактирование категории"
+      new:
+        title: "Добавление категории"
+
+    badges:
+      index:
+        header: "Список наград"
+        new: "Добавить достижение"
+        name: "Наименование"
+        category: "Категория"
+        rule: "Правило"
+        image: "Изображение"
+
+    questions:
+      show:
+        header: "Доступные ответы"
+        new_answer: "Добавить новый ответ"
+
+    answers:
+      new:
+        title: "Добавление ответа"
+      edit:
+        title: "Редактирование ответа"
+
+    gists:
+      index:
+        header: "Гисты"
+        question_title: "Вопрос"
+        gist: "Ссылка на гист"
+
+  tests_mailer:
+    completed_test:
+      subject: "Вы успешно завершили тест на TestGuru!"
+
+  back: "Назад"
+  edit: "Редактировать"
+  show: "Показать"
+  destroy: "Удалить"
+  login: "Войти"
+  signup: "Регистрация"
+  admin_panel: "Панель Администратора"
+  gist_description: "Вопрос из теста"

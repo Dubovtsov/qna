@@ -1,7 +1,9 @@
 h2= @question.title
 p= @question.body
+br
 
 - @question.answers.each do |answer|
   p= answer.body
 
-= render 'form_reply', answer: @answer
+h3 Add answer
+p= render 'answers/form'
