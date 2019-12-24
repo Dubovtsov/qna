@@ -1,8 +1,6 @@
 = form_with(model: [@question, Answer.new], local: true) do |f|
 
-  p
+  div.form-group
     = f.label :body
-    = f.text_area :body
-
-  p
-    = f.submit 'Reply'
+    = f.text_area :body, class: 'form-control'
+    = f.submit 'Reply', class: 'btn btn-success mt-2'

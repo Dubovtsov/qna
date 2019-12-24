@@ -1,9 +1,22 @@
-h2= @question.title
-p= @question.body
+div.border.p-4
+  h2= @question.title
+  p= @question.body
+
+
+div.pl-4.p-2.bg-light
+  p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
+
+div.border
+  - if @question.answers.present?
+    - @question.answers.each do |answer|
+      div.border-bottom.p-2.font-size-13= answer.body
+  - else
+    span.p-2.font-size-13.text-warning Ответов пока нет
+
 br
 
-- @question.answers.each do |answer|
-  p= answer.body
+div.border-bottom.border-top.pl-4.p-2.bg-light
+  p.font-size-13.font-weight-bold.mb-0.letter-spacing ADD ANSWER
 
-h3 Add answer
-p= render 'answers/form'
+div.form-group
+  = render 'answers/form'
