@@ -2,17 +2,14 @@ class AnswersController < ApplicationController
   before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[show edit update destroy]
 
-  # def new
-  #   @answer = Answer.new
-  # end
-
   def create
     @answer = @question.answers.new(answer_params)
+    @answer.user = current_user
 
     if @answer.save
       redirect_to @question, notice: 'Your answer successfully created.'
     else
-      render :new
+      redirect_to @question
     end
   end
 
@@ -32,6 +29,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body, :question_id)
+    params.require(:answer).permit(:body)
   end
 end

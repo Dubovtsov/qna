@@ -1,0 +1,6 @@
+- flash.map do |key, msg|
+  = content_tag :div, class: "alert alert-#{key} alert-dismissible fade show", role: "alert" do
+    = msg
+    = content_tag :button, class: "close", type: "button", "data-dismiss": "alert", "aria-label": "Close" do
+      = content_tag :span, "aria-hidden": true do
+        |  &times; 

@@ -1,4 +1,5 @@
-= form_with(model: [@question, Answer.new], local: true) do |f|
+= render 'shared/errors', resource: @answer
+= form_with(model: [@question, @answer], local: true) do |f|
 
   div.form-group
     = f.label :body
