@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!
   before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[show edit update destroy]
 
@@ -9,7 +10,7 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to @question, notice: 'Your answer successfully created.'
     else
-      redirect_to @question
+      redirect_to @question, alert: "Answer can't be blank."
     end
   end
 
