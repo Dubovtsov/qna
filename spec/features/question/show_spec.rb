@@ -7,24 +7,25 @@ feature 'User can view the question and answer to it', %q{
 } do
 
   given(:user) { create(:user) }
-  given!(:question) { create(:question) }
-  given(:answers) { create_list(:answer, 2, question: question) }
+  given!(:question) { create(:question, user: user) }
+  given!(:answers) { create_list(:answer, 2, question: question, user: user) }
+
+  background do
+    sign_in(user)
+    visit question_path(question)
+    expect(page).to have_content(question.title)
+  end
 
   scenario 'Any user can show question with answer' do
-    visit question_path(question)
-    save_and_open_page
-    expect(page).to have_content(question.title)
     expect(page).to have_content(answers.first.body)
     expect(page).to have_content(answers.last.body)
   end
 
-  scenario 'asks a question' do
-    # byebug
+  scenario 'give an answer' do
     fill_in 'Body', with: 'Answer first'
     click_on 'Reply'
 
-    expect(page).to have_content 'Your question successfully created.'
-    expect(page).to have_content 'Test question'
+    expect(page).to have_content 'Your answer successfully created.'
     expect(page).to have_content 'Answer first'
   end
 end

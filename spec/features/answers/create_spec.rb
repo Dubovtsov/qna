@@ -38,7 +38,7 @@ feature 'User can create answer', %q{
 
     fill_in 'Body', with: 'text text'
     click_on 'Reply'
-    save_and_open_page
+    # save_and_open_page
     expect(page).to have_content 'You need to sign in or sign up before continuing.'
   end
 end

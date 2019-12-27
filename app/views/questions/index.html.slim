@@ -1,13 +1,14 @@
 h1 Questions
-p= link_to 'Ask question', new_question_path
+p= link_to 'Ask question', new_question_path, class: 'btn btn-success'
 
-table.table
-  tr
-    th Title
-    th Body
-
-  - @questions.each do |question|
+div.bg-white.border.p-4
+  table.table
     tr
-      td
-        a= link_to question.title, question_path(question)
-      td= question.body
+      th Title
+      th Body
+
+    - @questions.each do |question|
+      tr
+        td
+          a= link_to question.title, question_path(question)
+        td= question.body

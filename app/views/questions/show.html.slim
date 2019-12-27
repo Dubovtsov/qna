@@ -1,20 +1,22 @@
-div.border.p-4
+div.border.border-bottom-0.p-4.bg-white
   h2= @question.title
-  p= @question.body
+  p.mb-0= @question.body
 
+- if current_user.id == @question.user.id
+  div.border.px-4.bg-white.text-right
+    span= link_to "edit", edit_question_path(@question), class: "badge badge-light ml-1"
+    span= link_to "delete", question_path(@question), method: :delete, class: "badge badge-light ml-1", data: { confirm: 'Are you sure?' }
 
 div.pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
 
-div.border
+div.border.bg-white
   - if @question.answers.present?
     - @question.answers.each do |answer|
       div.border-bottom.p-2.font-size-13= answer.body
   - else
     span.p-2.font-size-13.text-warning
       | Ответов пока нет
-
-br
 
 div.border-bottom.border-top.pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ADD ANSWER
