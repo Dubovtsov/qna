@@ -1,6 +1,6 @@
-nav.shadow-sm.navbar.border.justify-content-between.mb-3
+nav.shadow-sm.navbar.border.justify-content-between.mb-3.main-bg-yellow
   span.align-middle
-    = link_to 'QnA', root_path, class: 'navbar-brand'
+    = link_to 'QnA', root_path, class: 'navbar-brand main-text-dark'
   span.navbar-text.float-right
     - if user_signed_in?
       = link_to 'Logout', destroy_user_session_path, method: :delete

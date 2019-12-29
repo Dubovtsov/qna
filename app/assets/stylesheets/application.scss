@@ -8,6 +8,30 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&lang=en");
 @import "bootstrap/scss/bootstrap";
 
+.main-bg-red {
+  background-color: #ED254E
+}
+
+.main-bg-yellow {
+  background-color: #F9DC5C
+}
+
+.main-bg-white {
+  background-color: #F4FFFD
+}
+
+.main-bg-dark {
+  background-color: #011936
+}
+
+.main-text-dark {
+  color: #011936
+}
+
+.main-bg-grey {
+  background-color: #465362
+}
+
 .letter-spacing {
   letter-spacing: 2px;
 }

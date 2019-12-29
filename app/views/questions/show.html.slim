@@ -1,17 +1,17 @@
-div.border.border-bottom-0.p-4.bg-white
+div.border.p-4.bg-white
   h2= @question.title
   p.mb-0= @question.body
 
-- if current_user.id == @question.user.id
-  div.border.px-4.bg-white.text-right
-    span= link_to "edit", edit_question_path(@question), class: "badge badge-light ml-1"
-    span= link_to "delete", question_path(@question), method: :delete, class: "badge badge-light ml-1", data: { confirm: 'Are you sure?' }
+- if current_user.present? && current_user.id == @question.user.id
+  div.border.px-4.main-bg-grey.text-right
+    span= link_to "edit", edit_question_path(@question), class: "badge main-bg-grey text-white ml-1 border"
+    span= link_to "delete", question_path(@question), method: :delete, class: "badge main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }
 
 div.pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
 
 div.border.bg-white
-  - if @question.answers.present?
+  - if @question.answers.exists?
     - @question.answers.each do |answer|
       div.border-bottom.p-2.font-size-13= answer.body
   - else

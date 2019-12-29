@@ -1,14 +1,7 @@
 h1 Questions
-p= link_to 'Ask question', new_question_path, class: 'btn btn-success'
+p= link_to 'Ask question', new_question_path, class: 'btn main-bg-yellow shadow-sm'
 
-div.bg-white.border.p-4
-  table.table
-    tr
-      th Title
-      th Body
-
-    - @questions.each do |question|
-      tr
-        td
-          a= link_to question.title, question_path(question)
-        td= question.body
+div.bg-white.border
+  - @questions.each do |question|
+    div.bg-white.p-4.border
+      a= link_to question.title, question_path(question)

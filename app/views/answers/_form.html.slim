@@ -2,6 +2,5 @@
 = form_with(model: [@question, @answer], local: true) do |f|
 
   div.form-group
-    = f.label :body
     = f.text_area :body, class: 'form-control'
-    = f.submit 'Reply', class: 'btn btn-success mt-2'
+    = f.submit 'Reply', class: 'btn main-bg-yellow shadow-sm mt-2'
