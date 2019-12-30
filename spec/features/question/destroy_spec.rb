@@ -13,7 +13,7 @@ feature 'User can delete question', %q{
   describe 'Authenticated user' do
     background do
       sign_in(user)
-      visit questions_path
+      # visit questions_path
     end
 
     scenario 'delete a question' do
@@ -22,7 +22,6 @@ feature 'User can delete question', %q{
 
       expect(page).to have_content 'Your question deleted successfully.'
     end
-
   end
 
   scenario "remove another user's question" do
