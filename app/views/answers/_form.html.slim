@@ -1,5 +1,5 @@
 = render 'shared/errors', resource: @answer
-= form_with(model: [@question, @answer], local: true) do |f|
+= form_with(model: [@question, @question.answers.new], local: true) do |f|
 
   div.form-group
     = f.text_area :body, class: 'form-control'

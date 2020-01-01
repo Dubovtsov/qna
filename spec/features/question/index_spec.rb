@@ -14,7 +14,6 @@ feature 'User can view a list of questions', %q{
     questions.each do |question|
       # save_and_open_page
       expect(page).to have_content question.title
-      expect(page).to have_content question.body
     end
   end
 end
