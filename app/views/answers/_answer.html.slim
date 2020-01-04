@@ -1,4 +1,7 @@
-div.border-bottom.p-2.font-size-13.col-md-10= answer.body
-div.border.p-2.font-size-13.col-md-1
-  span= link_to "delete", question_answer_path(answer), method: :delete,
-  class: "badge main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }
+div.border-bottom.p-2.font-size-13.col-md-10
+  p= answer.body
+  p= answer.id
+
+- if current_user && current_user == answer.user
+  div.border.p-2.font-size-13.col-md-1
+    span= link_to "delete", answer_path(answer), class: "badge main-bg-red text-white border ml-1", method: :delete, data: { confirm: 'Are you sure?' }
