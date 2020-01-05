@@ -6,24 +6,29 @@ feature 'User can delete own answers', %q(
   I'd like to be able to delete the answer
 ) do
 
-  given(:user) { create(:user) }
+  # given(:user) { create(:user) }
+  given!(:users) { create_list(:user, 3) }
   given!(:question) { create(:question) }
-  given!(:answer) { create(:answer, question: question, user: user) }
+  given!(:answer) { create(:answer, question: question, user: users[0]) }
 
   describe 'Authenticated user' do
-    background do
-      sign_in(user)
-      visit question_path(question)
-    end
+    # background do
+    #   visit question_path(question)
+    # end
 
     scenario 'tries to delete own answer' do
+      sign_in(users[0])
+      visit question_path(question)
+
       click_on 'delete'
 
       expect(page).to_not have_content answer.body
     end
 
     scenario "tries to delete someone else's answer" do
-      expect(page).to_not have_content 'delete'
+      sign_in(users[1])
+      visit question_path(question)
+      expect(page).to_not have_link 'delete'
     end
   end
 

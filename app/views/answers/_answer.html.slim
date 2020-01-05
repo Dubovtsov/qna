@@ -1,7 +1,13 @@
-div.border-bottom.p-2.font-size-13.col-md-10
-  p= answer.body
-  p= answer.id
+div.pt-2.border-bottom.font-size-13
+  div.col-sm
+    p.mb-1= answer.body
+  div.px-2.font-size-13.text-right.col-sm
+    span.main-text-grey answered:
+    span.main-text-grey= answer.user.email
 
-- if current_user && current_user == answer.user
-  div.border.p-2.font-size-13.col-md-1
-    span= link_to "delete", answer_path(answer), class: "badge main-bg-red text-white border ml-1", method: :delete, data: { confirm: 'Are you sure?' }
+  - if current_user && current_user == answer.user
+    div.px-2.font-size-13.text-right.col-sm
+      span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
+      | |
+      span= link_to "delete", answer_path(answer), method: :delete,
+      class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }

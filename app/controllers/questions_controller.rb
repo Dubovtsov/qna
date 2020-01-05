@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %w[index show]
-  before_action :load_question, only: %w[new show edit update destroy]
+  before_action :load_question, only: %w[show edit update destroy]
 
   def index
     @questions = Question.all

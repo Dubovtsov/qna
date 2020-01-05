@@ -5,3 +5,4 @@ div.bg-white.border
   - @questions.each do |question|
     div.bg-white.p-4.border
       a= link_to question.title, question_path(question)
+      p.font-size-13= question.body

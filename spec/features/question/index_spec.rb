@@ -9,10 +9,9 @@ feature 'User can view a list of questions', %q{
   given!(:questions) { create_list(:question, 3) }
 
   scenario 'Any user view questions' do
-    visit questions_path
+    visit root_path
 
     questions.each do |question|
-      # save_and_open_page
       expect(page).to have_content question.title
     end
   end

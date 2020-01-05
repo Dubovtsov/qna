@@ -18,7 +18,7 @@ feature 'User can create answer', %q{
     end
 
     scenario 'give an answer' do
-      fill_in 'Body', with: 'text text'
+      fill_in 'answer_body', with: 'text text'
       click_on 'Reply'
 
       expect(page).to have_content 'Your answer successfully created.'
@@ -33,12 +33,9 @@ feature 'User can create answer', %q{
   end
 
   scenario 'Unauthenticated user tries to give an answer' do
-    visit questions_path
+    visit root_path
     click_on 'MyString'
 
-    fill_in 'Body', with: 'text text'
-    click_on 'Reply'
-    # save_and_open_page
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    expect(page).to_not have_content 'Reply'
   end
 end

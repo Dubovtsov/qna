@@ -12,7 +12,7 @@
 
 $main-red: #ED254E;
 $main-yellow: #F9DC5C;
-$main-grey: #465362;
+$main-grey: #C2C2C2;
 $main-dark: #011936;
 
 .main-bg-red {
@@ -47,6 +47,10 @@ $main-dark: #011936;
   background-color: $main-grey
 }
 
+.main-text-grey {
+  color: $main-grey
+}
+
 .letter-spacing {
   letter-spacing: 2px;
 }
@@ -57,4 +61,5 @@ $main-dark: #011936;
 
 .btn-hover:hover {
   border: 1px solid $main-grey;
+  background-color: #FFE368;
 }
