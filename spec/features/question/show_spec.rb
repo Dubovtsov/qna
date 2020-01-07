@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-feature 'User can view the question and answer to it', %q{
-  In order to view question
-  As an user
-  I'd like to be able to see question with answers
+feature 'User can view the question with answers', %q{
+  In order to view question with answers
+  As a user
+  I'd like to be able to view the question with answers
 } do
 
   given(:user) { create(:user) }
@@ -16,7 +16,7 @@ feature 'User can view the question and answer to it', %q{
     expect(page).to have_content(question.title)
   end
 
-  scenario 'Any user can show question with answer' do
+  scenario 'Any user can view the question with answers' do
     expect(page).to have_content(answers.first.body)
     expect(page).to have_content(answers.last.body)
   end

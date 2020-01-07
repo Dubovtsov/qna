@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User can sign in', %q{
-  In order to ask questions
+  In order to ask questions and give answers
   As an unauthenticated user
   I'd like to be able to sign in
 } do

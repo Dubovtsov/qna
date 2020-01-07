@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User can logout', %q{
-  In order to ask questions
+  In order to logout
   As an authenticated user
   I'd like to be able to logout
 } do
@@ -11,7 +11,6 @@ feature 'User can logout', %q{
   scenario 'Authenticated user tries to logout' do
     sign_in(user)
     visit root_path
-
     click_on 'Logout'
 
     expect(page).to have_content 'Signed out successfully.'

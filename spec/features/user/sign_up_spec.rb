@@ -1,10 +1,8 @@
-# save_and_open_page
-
 require 'rails_helper'
 
-feature 'User can signup', %q{
-  In order to ask questions
-  As an authenticated user
+feature 'User can sign up', %q{
+  In order to ask questions and give answers
+  As an unauthenticated user
   I'd like to be able to sign up
 } do
 
@@ -20,7 +18,6 @@ feature 'User can signup', %q{
   scenario 'User tries to sign in with invalid data' do
     fill_in 'Email', with: ''
     fill_in 'Password', with: ''
-
     click_on 'Sign up'
 
     expect(page).to have_text 'error'
