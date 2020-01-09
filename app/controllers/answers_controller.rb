@@ -1,25 +1,25 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[new create]
-  before_action :load_answer, only: %i[show edit update destroy]
+  before_action :load_answer, only: %i[edit update destroy]
 
   def new
     @answer = @question.answers.new
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = @question.answers.build(answer_params)
     @answer.user = current_user
 
     if @answer.save
       redirect_to @question, notice: 'Your answer successfully created.'
     else
-      redirect_to @question, alert: "Answer can't be blank."
+      render 'questions/show', location: question_path(@question)
     end
   end
 
   def destroy
-    @answer.destroy if current_user == @answer.user
+    @answer.destroy if author_of?(@answer)
     redirect_to @answer.question
   end
 

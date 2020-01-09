@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  def not_found
-    render file: "#{Rails.root}/public/404.html", layout: false
+  helper_method :author_of?
+
+  def author_of?(resource)
+    current_user == resource.user_id
   end
 end

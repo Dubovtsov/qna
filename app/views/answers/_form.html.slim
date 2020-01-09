@@ -1,6 +1,6 @@
 = render 'shared/errors', resource: @answer
 = form_with(model: [@question, @question.answers.new], local: true) do |f|
 
-  div.form-group
+  .form-group
     = f.text_area :body, class: 'form-control'
     = f.submit 'Reply', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
