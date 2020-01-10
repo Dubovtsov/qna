@@ -11,11 +11,7 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
 
-    if @answer.save
-      redirect_to @question, notice: 'Your answer successfully created.'
-    else
-      render 'questions/show', location: question_path(@question)
-    end
+    redirect_to @question, notice: 'Your answer successfully created.' if @answer.save
   end
 
   def destroy
