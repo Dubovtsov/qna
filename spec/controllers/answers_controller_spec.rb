@@ -7,19 +7,6 @@ RSpec.describe AnswersController, type: :controller do
 
   before { sign_in(user) }
 
-  describe 'GET #new' do
-
-    before { get :new, params: { question_id: question, answer: attributes_for(:answer) } }
-
-    it 'assigns a new Answer to @answer' do
-      expect(assigns(:answer)).to be_a_new(Answer)
-    end
-
-    it 'renders new view' do
-      expect(response).to render_template :new
-    end
-  end
-
   describe 'POST #create' do
 
     context 'with valid attributes' do
@@ -39,8 +26,36 @@ RSpec.describe AnswersController, type: :controller do
       end
 
       it 're-renders new view' do
-        post :create, params: { question_id: question, answer: attributes_for(:answer, :invalid) }
-        expect(response).to render_template :new
+        post :create, params: { question_id: question, user: user, answer: attributes_for(:answer, :invalid) }
+        expect(response).to render_template 'questions/show'
+      end
+    end
+  end
+
+  describe 'DELETE #destroy' do
+    context 'user is author' do
+      let!(:answer) { create(:answer, user: user, question: question) }
+
+      it 'delete the answer' do
+        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(-1)
+      end
+
+      it 'render destroy' do
+        delete :destroy, params: { id: answer }
+        expect(response).to redirect_to question_path(question)
+      end
+    end
+
+    context 'user is not author' do
+      let!(:answer) { create(:answer, user: create(:user), question: question) }
+
+      it "user cannot delete someone else's answer" do
+        expect { delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
+      end
+
+      it 'render destroy' do
+        delete :destroy, params: { id: answer }
+        expect(response).to redirect_to question_path(question)
       end
     end
   end

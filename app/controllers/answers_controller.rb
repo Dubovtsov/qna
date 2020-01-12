@@ -1,17 +1,19 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_question, only: %i[new create]
+  before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[edit update destroy]
-
-  def new
-    @answer = @question.answers.new
-  end
 
   def create
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
 
-    redirect_to @question, notice: 'Your answer successfully created.' if @answer.save
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to @question, notice: 'Your answer successfully created.' }
+      else
+        format.html { render 'questions/show' }
+      end
+    end
   end
 
   def destroy

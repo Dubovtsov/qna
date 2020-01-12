@@ -5,9 +5,9 @@
     span.main-text-grey answered:
     span.main-text-grey= answer.user.email
 
-  - if current_user && current_user == answer.user
+  - if current_user && author_of?(answer)
     .px-2.font-size-13.text-right.col-sm
-      span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
+      / span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
       | |
       span= link_to "delete", answer_path(answer), method: :delete,
-      class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
+      class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty? 
