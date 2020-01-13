@@ -8,7 +8,7 @@ feature 'User can view the question with answers', %q{
 
   given(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
-  given!(:answers) { create_list(:answer, 2, question: question, user: user) }
+  given!(:answers) { create_list(:answer, 4, question: question, user: user) }
 
   background do
     sign_in(user)
@@ -17,7 +17,8 @@ feature 'User can view the question with answers', %q{
   end
 
   scenario 'Any user can view the question with answers' do
-    expect(page).to have_content(answers.first.body)
-    expect(page).to have_content(answers.last.body)
+    answers.each do |answer|
+      expect(page).to have_content answer.body
+    end
   end
 end

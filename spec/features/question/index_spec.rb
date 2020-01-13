@@ -6,7 +6,8 @@ feature 'User can view a list of questions', %q{
   I'd like to be able to view a list questions
 } do
 
-  given!(:questions) { create_list(:question, 3) }
+  given(:user) { create(:user) }
+  given!(:questions) { create_list(:question, 5, user: user) }
 
   scenario 'Any user views questions' do
     visit root_path

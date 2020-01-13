@@ -155,20 +155,5 @@ RSpec.describe QuestionsController, type: :controller do
         expect(response).to redirect_to questions_path
       end
     end
-
-
-
-    # before { login(user) }
-
-    # let!(:question) { create(:question, user: user) }
-
-    # it 'delete the question' do
-    #   expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
-    # end
-
-    # it 'redirect to index' do
-    #   delete :destroy, params: { id: question }
-    #   expect(response).to redirect_to questions_path
-    # end
   end
 end

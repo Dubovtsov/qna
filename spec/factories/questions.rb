@@ -1,11 +1,14 @@
 FactoryBot.define do
   factory :question do
-    title { "MyString" }
     body { "MyText" }
-    association :user
-    
+    user
+
     trait :invalid do
       title { nil }
+    end
+
+    sequence :title do |n|
+      "MyString#{n}"
     end
   end
 end

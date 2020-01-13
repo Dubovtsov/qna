@@ -7,17 +7,15 @@ class AnswersController < ApplicationController
     @answer = @question.answers.build(answer_params)
     @answer.user = current_user
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @question, notice: 'Your answer successfully created.' }
-      else
-        format.html { render 'questions/show' }
-      end
+    if @answer.save
+      redirect_to @question, notice: 'Your answer successfully created.'
+    else
+      render 'questions/show'
     end
   end
 
   def destroy
-    @answer.destroy if author_of?(@answer)
+    @answer.destroy if current_user.author_of?(@answer)
     redirect_to @answer.question
   end
 
