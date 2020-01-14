@@ -1,6 +1,7 @@
-= render 'shared/errors', resource: @answer
-= form_with(model: [@question, @answer], local: true) do |f|
+.answer-errors
+  = render 'shared/errors', resource: @answer
 
+= form_with(model: [@question, @answer]) do |f|
   .form-group
     = f.text_area :body, class: 'form-control'
     = f.submit 'Reply', id: 'submit_answer', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'

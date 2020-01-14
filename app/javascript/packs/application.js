@@ -20,16 +20,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require rails-ujs
-//= require activestorage
-//= require turbolinks
-//= require_tree .
-//= require jquery3
-//= require popper
-//= require bootstrap-sprockets
-//
-
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
+require("jquery")
+//= require rails-ujs
+//= require activestorage
+//= require turbolinks
+//= require jquery3
+//= require popper
+//= require bootstrap-sprockets
+//= require_tree .
+//

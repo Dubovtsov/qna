@@ -10,7 +10,7 @@ feature 'User can create an answer', %q{
   given!(:question) { create(:question, user: user) }
   given(:answers) { create_list(:answer, 2, question: question, user: user) }
 
-  describe 'Authenticated user' do
+  describe 'Authenticated user', js: true do
     background do
       sign_in(user)
       visit questions_path
