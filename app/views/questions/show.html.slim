@@ -1,0 +1,20 @@
+= render @question
+.pl-4.p-2.bg-light
+  p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
+
+.border.bg-white
+  - if @question.answers.exists?
+    =render @question.answers
+  - else
+    span.p-2.font-size-13.text-warning
+      | Ответов пока нет
+
+- if current_user
+  .pl-4.p-2.bg-light
+    p.font-size-13.font-weight-bold.mb-0.letter-spacing ADD ANSWER
+
+  .form-group
+    = render 'answers/form'
+- else
+  .border-bottom.border-top.pl-4.p-2.bg-light
+    p.font-size-15.mb-0.text-center.main-text-red Login or signup to answer the question
