@@ -23,9 +23,9 @@ feature 'User can edit his answer', %q{
       visit question_path(question)
 
       within '.answers' do
-
-        click_on 'edit'
-        fill_in 'answer_body', with: 'edited answer'
+# save_and_open_page
+        click_on 'Edit'
+        fill_in 'Body', with: 'edited answer'
         click_on 'save'
 
         expect(page).to_not have_content answer.body

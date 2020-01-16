@@ -1,11 +1,11 @@
 .pt-2.border-bottom.font-size-13
   .col-sm
     p.mb-1= answer.body
-    = form_with model: answer do |f|
+    = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
       .form-group
-      = f.label :body, 'Your answer'
+      = f.label :body, 'Body'
       = f.text_area :body, class: 'form-control'
-      = f.submit 'save', id: 'submit_answer', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
+      = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey answered:
@@ -13,7 +13,7 @@
 
   - if current_user && current_user.author_of?(answer)
     .px-2.font-size-13.text-right.col-sm
-      span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
+      span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
       | |
       span= link_to "delete", answer_path(answer), method: :delete,
       class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?

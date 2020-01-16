@@ -1,0 +1,59 @@
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700&lang=en");
+@import "bootstrap/scss/bootstrap";
+/*COLORS*/
+
+$main-red: #ED254E;
+$main-yellow: #F9DC5C;
+$main-grey: #C2C2C2;
+$main-dark: #011936;
+
+.main-bg-red {
+  background-color: $main-red
+}
+
+.main-text-red {
+  color: $main-red
+}
+
+.main-bg-yellow {
+  background-color: $main-yellow
+}
+
+.main-text-yellow {
+  color: $main-yellow
+}
+
+.main-bg-white {
+  background-color: #F4FFFD
+}
+
+.main-bg-dark {
+  background-color: $main-dark
+}
+
+.main-text-dark {
+  color: $main-dark
+}
+
+.main-bg-grey {
+  background-color: $main-grey
+}
+
+.main-text-grey {
+  color: $main-grey
+}
+
+.letter-spacing {
+  letter-spacing: 2px;
+}
+
+.font-size-13 {
+  font-size: 13px;
+}
+
+.btn-hover:hover {
+  border: 1px solid $main-grey;
+  background-color: #FFE368;
+}
+
+.hidden { display: none }
