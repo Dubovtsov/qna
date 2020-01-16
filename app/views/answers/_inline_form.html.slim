@@ -1,0 +1,8 @@
+.answer-errors
+  = render 'shared/errors', resource: @answer
+
+= form_with model: answer do |f|
+  .form-group
+    = f.label :body, 'Your answer'
+    = f.text_area :body, class: 'form-control'
+    = f.submit 'Reply', id: 'submit_answer', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'

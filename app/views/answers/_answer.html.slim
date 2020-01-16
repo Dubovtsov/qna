@@ -1,13 +1,19 @@
 .pt-2.border-bottom.font-size-13
   .col-sm
     p.mb-1= answer.body
+    = form_with model: answer do |f|
+      .form-group
+      = f.label :body, 'Your answer'
+      = f.text_area :body, class: 'form-control'
+      = f.submit 'save', id: 'submit_answer', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
+
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey answered:
     span.main-text-grey= answer.user.email
 
   - if current_user && current_user.author_of?(answer)
     .px-2.font-size-13.text-right.col-sm
-      / span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
+      span= link_to "edit", edit_question_path(@question), class: "px-1 py-0"
       | |
       span= link_to "delete", answer_path(answer), method: :delete,
       class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?
