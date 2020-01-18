@@ -36,17 +36,17 @@ RSpec.describe AnswersController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy', format: :js do
+  describe 'DELETE #destroy' do
     context 'user is author' do
       let!(:answer) { create(:answer, user: user, question: question) }
 
       it 'delete the answer' do
-        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(-1)
+        expect { delete :destroy, params: { id: answer }, format: :js }.to change(Answer, :count).by(-1)
       end
 
       it 'render destroy' do
-        delete :destroy, params: { id: answer }
-        expect(response).to redirect_to question_path(question)
+        delete :destroy, params: { id: answer }, format: :js
+        expect(response).to render_template :destroy
       end
     end
 
@@ -54,12 +54,7 @@ RSpec.describe AnswersController, type: :controller do
       let!(:answer) { create(:answer, user: create(:user), question: question) }
 
       it "user cannot delete someone else's answer" do
-        expect { delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
-      end
-
-      it 'render destroy' do
-        delete :destroy, params: { id: answer }
-        expect(response).to redirect_to question_path(question)
+        expect { delete :destroy, params: { id: answer }, format: :js }.to_not change(Answer, :count)
       end
     end
   end

@@ -1,5 +1,12 @@
-.pt-2.border-bottom.font-size-13 id="answer-#{answer.id}"
-  .col-sm
+.row.border-bottom.m-0.font-size-13 id="answer-#{answer.id}"
+  .col-md-1.border-right.pt-2
+    .best
+      = if answer.best
+        i.material-icons.md-36 check
+      else
+        = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
+        = answer.best
+  .col-md-11.pt-2
     p.mb-1= answer.body
     = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
       .form-group
@@ -7,13 +14,13 @@
       = f.text_area :body, class: 'form-control'
       = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
 
-  .px-2.font-size-13.text-right.col-sm
-    span.main-text-grey answered:
-    span.main-text-grey= answer.user.email
+    .font-size-13.text-right.col-sm
+      span.main-text-grey answered:
+      span.main-text-grey= answer.user.email
 
-  - if current_user && current_user.author_of?(answer)
-    .px-2.font-size-13.text-right.col-sm
-      span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
-      | |
-      span= link_to "Delete", answer, method: :delete, remote: true,
-      class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?
+    - if current_user && current_user.author_of?(answer)
+      .font-size-13.text-right.col-sm
+        span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
+        | |
+        span= link_to "Delete", answer, method: :delete, remote: true,
+        class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?

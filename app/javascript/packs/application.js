@@ -35,3 +35,11 @@ require("packs/answers")
 //= require bootstrap-sprockets
 //= require_tree .
 //
+
+$(document).on("turbolinks:load", function(){
+  setTimeout(function () {
+    if ($(".alert").is(":visible")){
+      $(".alert").fadeOut("slow");
+    }
+  }, 3000)
+});
