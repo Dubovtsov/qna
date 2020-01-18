@@ -23,7 +23,6 @@ feature 'User can edit his answer', %q{
       visit question_path(question)
 
       within '.answers' do
-# save_and_open_page
         click_on 'Edit'
         fill_in 'Body', with: 'edited answer'
         click_on 'save'

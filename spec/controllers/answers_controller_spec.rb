@@ -36,7 +36,7 @@ RSpec.describe AnswersController, type: :controller do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe 'DELETE #destroy', format: :js do
     context 'user is author' do
       let!(:answer) { create(:answer, user: user, question: question) }
 

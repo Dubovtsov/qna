@@ -1,4 +1,4 @@
-.pt-2.border-bottom.font-size-13
+.pt-2.border-bottom.font-size-13 id="answer-#{answer.id}"
   .col-sm
     p.mb-1= answer.body
     = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
@@ -15,5 +15,5 @@
     .px-2.font-size-13.text-right.col-sm
       span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
       | |
-      span= link_to "delete", answer_path(answer), method: :delete,
+      span= link_to "Delete", answer, method: :delete, remote: true,
       class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?
