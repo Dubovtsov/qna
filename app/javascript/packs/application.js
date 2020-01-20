@@ -21,6 +21,8 @@
 // about supported directives.
 //
 require("@rails/ujs").start()
+global.Rails = Rails;
+
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
