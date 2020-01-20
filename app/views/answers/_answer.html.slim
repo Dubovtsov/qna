@@ -1,11 +1,12 @@
 .row.border-bottom.m-0.font-size-13 id="answer-#{answer.id}"
+
   .col-md-1.border-right.pt-2
     .best
-      = if answer.best
+      - if answer.best
         i.material-icons.md-36 check
-      else
+      - else
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
-        = answer.best
+
   .col-md-11.pt-2
     p.mb-1= answer.body
     = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|

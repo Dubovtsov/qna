@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_question, only: %i[create best]
+  before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[edit update best destroy]
 
   def create
@@ -21,6 +21,8 @@ class AnswersController < ApplicationController
   end
 
   def best
+    @question = @answer.question
+    Answer.where(question_id: @answer.question_id, best: true).update_all(best: false)
     @answer.best = true
     @answer.save
   end
