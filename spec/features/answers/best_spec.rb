@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature 'User can choose the best answer to your question', %q{
-  In order to other users can find the correct answer
-  As an guest and authenticated user
+feature 'The user can choose the best answer to his question', %q{
+  In order for other users to find the correct answer
+  As an authenticated user
   I'd like to be able to note the correct answer
 } do
 
@@ -17,14 +17,10 @@ feature 'User can choose the best answer to your question', %q{
     end
 
     scenario 'choose the best answer' do
-      click_on 'Best answer'
-      # выбрать по какой ссылке нажать
+      click_on 'Best answer', match: :first
 
       expect(current_path).to eq question_path(question)
-      expect(page).to have_content 'Your answer successfully created.'
-      within '.answers' do
-        expect(page).to have_content 'text text'
-      end
+      expect(page).to have_content 'The best'
     end
   end
 

@@ -1,10 +1,11 @@
 .row.border-bottom.m-0.font-size-13 id="answer-#{answer.id}"
 
-  .col-md-1.border-right.pt-2
+  .col-md-1.border-right.pt-2 
     .best
       - if answer.best
         i.material-icons.md-36 check
-      - else
+        span The best
+      - if current_user && current_user.author_of?(@question) && !answer.best
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
 
   .col-md-11.pt-2
