@@ -22,6 +22,18 @@ feature 'The user can choose the best answer to his question', %q{
       expect(current_path).to eq question_path(question)
       expect(page).to have_content 'The best'
     end
+
+    scenario 'mark another answer as the best' do
+      visit question_path(question)
+
+      within "#answer-#{answers.last.id}" do
+        click_on 'Best answer'
+      end
+
+      within first('.answers') do
+        expect(page).to have_content answers.last.body
+      end
+    end
   end
 
   scenario 'Unauthenticated user tries to choose the best answer' do

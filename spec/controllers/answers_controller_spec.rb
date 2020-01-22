@@ -88,16 +88,33 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'POST #best' do
-    context 'with valid attributes' do
+    context 'user is author question' do
       it 'changes answer attributes' do
-        patch :update, params: { id: answer, answer: { body: 'new body' } }, format: :js
+        post :best, params: { id: answer }, format: :js
         answer.reload
-        expect(answer.body).to eq 'new body'
+        expect(answer.best).to eq true
       end
 
-      it 'renders update view' do
-        patch :update, params: { id: answer, answer: { body: 'new body' } }, format: :js
-        expect(response).to render_template :update
+      it 'renders best view' do
+        post :best, params: { id: answer }, format: :js
+        expect(response).to render_template :best
+      end
+    end
+
+    context 'user is not author of the question' do
+      let(:user1) { create(:user) }
+      before { sign_in(user1) }
+
+      it "can't set the answer as the best" do
+        post :best, params: { id: answer }, format: :js
+        answer.reload
+        expect(answer.best).to_not change
+      end
+
+      it 'render best' do
+        post :best, params: { id: answer }, format: :js
+
+        expect(response).to render_template :best
       end
     end
   end
