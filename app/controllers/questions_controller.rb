@@ -15,6 +15,7 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question.update(question_params)
   end
 
   def create

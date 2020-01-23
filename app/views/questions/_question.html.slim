@@ -1,11 +1,24 @@
-.border.pl-4.pt-3.pb-1.bg-white
+.question.border.pl-4.pt-3.pb-1.bg-white
   h2= @question.title
   p.mb-0= @question.body
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey asked:
     span.main-text-grey= @question.user.email
 
+= form_with model: @question, class: 'hidden', html: { id: "edit-question-#{question.id}" } do |f|
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control'
+
+    = f.label :body
+    = f.text_area :body, class: 'form-control'
+
+    = f.submit 'Ask', class: 'btn btn-hover btn-sm btn-success mt-2'
+    = link_to 'Back', questions_path, class: "btn btn-hover float-right btn-sm btn-danger mt-2"
+
+
 - if current_user.present? && current_user.author_of?(@question)
   .border.px-4.py-1.main-bg-grey.text-right
-    span= link_to "edit", edit_question_path(@question), class: "btn btn-sm px-2 py-0 main-bg-grey text-white ml-1 border"
+    span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-grey text-white ml-1 border", data: { question_id: question.id }
+
     span= link_to "delete", question_path(@question), method: :delete, class: "btn btn-sm px-2 py-0 main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }

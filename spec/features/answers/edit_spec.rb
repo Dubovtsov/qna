@@ -34,6 +34,9 @@ feature 'User can edit his answer', %q{
     end
 
     scenario 'edits his answer with errors'
-    scenario 'tries to edit other users question'
+
+    scenario 'tries to edit other users question' do
+      except(page).to_not have_link 'Edit'
+    end
   end
 end
