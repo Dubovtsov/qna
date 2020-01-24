@@ -1,4 +1,4 @@
-.question.border.pl-4.pt-3.pb-1.bg-white
+.question-title.border.p-4.bg-white
   h2= @question.title
   p.mb-0= @question.body
   .px-2.font-size-13.text-right.col-sm
@@ -18,7 +18,7 @@
 
 
 - if current_user.present? && current_user.author_of?(@question)
-  .border.px-4.py-1.main-bg-grey.text-right
-    span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-grey text-white ml-1 border", data: { question_id: question.id }
+  .border.control-panel.px-4.py-1.main-bg-dark.text-right
+    span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-yellow ml-1 border", data: { question_id: question.id }
 
     span= link_to "delete", question_path(@question), method: :delete, class: "btn btn-sm px-2 py-0 main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }

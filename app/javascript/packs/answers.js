@@ -5,4 +5,6 @@ $(document).on("turbolinks:load", function(){
     var answerId = $(this).data('answerId');
     $("form#edit-answer-" + answerId).removeClass('hidden');
   });
+
+  
 });

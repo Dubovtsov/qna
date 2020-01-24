@@ -106,9 +106,7 @@ RSpec.describe AnswersController, type: :controller do
       before { sign_in(user1) }
 
       it "can't set the answer as the best" do
-        post :best, params: { id: answer }, format: :js
-        answer.reload
-        expect(answer.best).to_not change
+        expect { post :best, params: { id: answer }, format: :js }.to_not change(answer, :best)
       end
 
       it 'render best' do

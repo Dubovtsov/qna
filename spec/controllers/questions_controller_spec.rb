@@ -93,7 +93,7 @@ RSpec.describe QuestionsController, type: :controller do
   describe 'PATCH #update' do
     before { login(users[0]) }
 
-    context 'with valid attributes' do
+    context 'with valid attributes', js: true do
 
       it 'assigns the requested question to @question' do
         patch :update, params: { id: question, question: attributes_for(:question) }
@@ -114,16 +114,16 @@ RSpec.describe QuestionsController, type: :controller do
     end
 
     context 'with invalid attributes' do
-      before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) } }
+      # before { patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js }
 
       it 'does not change question' do
-        question.reload
-
-        expect(question.title).to eq 'MyString'
-        expect(question.body).to eq 'MyText'
+        expect do
+          patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
+        end.to_not change(question, :body)
       end
 
-      it 're-renders edit view' do
+      it 'renders edit view' do
+        patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
         expect(response).to render_template :edit
       end
     end
