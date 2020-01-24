@@ -4,8 +4,9 @@
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey asked:
     span.main-text-grey= @question.user.email
-
-= form_with model: @question, class: 'hidden', html: { id: "edit-question-#{question.id}" } do |f|
+.question-errors
+  = render 'shared/errors', resource: @question
+= form_with model: @question, class: 'hidden question-form', html: { id: "edit-question-#{question.id}" } do |f|
   .form-group
     = f.label :title
     = f.text_field :title, class: 'form-control'
@@ -14,7 +15,7 @@
     = f.text_area :body, class: 'form-control'
 
     = f.submit 'Ask', class: 'btn btn-hover btn-sm btn-success mt-2'
-    = link_to 'Back', questions_path, class: "btn btn-hover float-right btn-sm btn-danger mt-2"
+    = link_to 'Back', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
 
 
 - if current_user.present? && current_user.author_of?(@question)
