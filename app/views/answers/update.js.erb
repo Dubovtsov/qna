@@ -1,2 +1,7 @@
-$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>');
-$('#answers').html('<%= j render @question.answers %>');
+<% if @answer.errors.any?%>
+  $('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>');
+  $("form#edit-answer-" + answerId).removeClass('hidden');
+<% else %>
+  $('.answer-errors').remove()
+  $('#answers').html('<%= j render @question.answers %>');
+<% end %>
