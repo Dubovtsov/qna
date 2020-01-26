@@ -1,6 +1,6 @@
 <% if @question.errors.any? %>
   $('.question-form').removeClass('hidden');
-  $('.question-errors').html('<%= render 'shared/errors', resource: @question %>');
+  $('.question-errors').html('<%= j render 'shared/errors', resource: @question %>');
 <% else %>
   $('.question').html('<%= j render @question %>');
 <% end %>

@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update(answer_params)
+    @answer.update(answer_params) if current_user.author_of?(@answer)
     @question = @answer.question
   end
 
@@ -22,9 +22,7 @@ class AnswersController < ApplicationController
 
   def best
     @question = @answer.question
-    Answer.where(question_id: @answer.question_id, best: true).update_all(best: false)
-    @answer.best = true
-    @answer.save
+    @answer.best! if current_user.author_of?(@question)
   end
 
   private

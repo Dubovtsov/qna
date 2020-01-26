@@ -1,4 +1,4 @@
-$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>');
-<% unless @answer.errors.present? %>
+$('.answer-errors').html('<%= j render 'shared/errors', resource: @answer %>');
+<% if @answer.errors.blank? %>
   $('#answer-<%= @answer.id %>').remove()
 <% end %>

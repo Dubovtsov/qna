@@ -1,5 +1,5 @@
-$('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>');
-$('.container').prepend('<%= render 'shared/flash', resource: @answer %>');
+$('.answer-errors').html('<%= j render 'shared/errors', resource: @answer %>');
+$('.container').prepend('<%= j render 'shared/flash', resource: @answer %>');
 <% if @answer.persisted? %>
   $('.answers').append('<%= j render @answer %>');
   $('.new-answer #answer_body').val('');

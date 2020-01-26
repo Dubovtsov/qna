@@ -27,8 +27,8 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require("packs/answers")
-require("packs/questions")
+require("project/answers")
+require("project/questions")
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks

@@ -1,5 +1,5 @@
 <% if @answer.errors.any?%>
-  $('.answer-errors').html('<%= render 'shared/errors', resource: @answer %>');
+  $('.answer-errors').html('<%= j render 'shared/errors', resource: @answer %>');
   $("form#edit-answer-" + answerId).removeClass('hidden');
 <% else %>
   $('.answer-errors').remove()

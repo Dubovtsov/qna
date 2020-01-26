@@ -18,7 +18,7 @@
     = link_to 'Back', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
 
 
-- if current_user.present? && current_user.author_of?(@question)
+- if current_user&.author_of?(@question)
   .border.control-panel.px-4.py-1.main-bg-dark.text-right
     span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-yellow ml-1 border", data: { question_id: question.id }
 
