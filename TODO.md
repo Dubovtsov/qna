@@ -12,3 +12,11 @@
 
  - Все истории реализуем через TDD, т.е. сначала тесты.
  - Проверку на авторство по-прежнему реализуем вручную на уровне контроллеров. Это нужно тестировать как на уровне acceptance-тестов (например то, что нет ссылки на действие), так и на уровне тестов контроллера (то, что действие в действительности не выполнено).
+
+ - добавить индекс у модели Answer add_index(:accounts, [:branch_id, :party_id], unique: true, where: "active")
+
+ class AddIndexToAnswers < ActiveRecord::Migration[6.0]
+  def change
+    add_index :answers, [:best, :question_id], unique: true, where: "best IS TRUE"
+  end
+end

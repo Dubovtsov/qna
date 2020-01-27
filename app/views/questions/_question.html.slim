@@ -14,8 +14,8 @@
     = f.label :body
     = f.text_area :body, class: 'form-control'
 
-    = f.submit 'Ask', class: 'btn btn-hover btn-sm btn-success mt-2'
-    = link_to 'Back', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
+    = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success mt-2'
+    = link_to 'Cancel', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
 
 
 - if current_user&.author_of?(@question)

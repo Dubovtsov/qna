@@ -56,6 +56,11 @@ RSpec.describe AnswersController, type: :controller do
       it "user cannot delete someone else's answer" do
         expect { delete :destroy, params: { id: answer }, format: :js }.to_not change(Answer, :count)
       end
+
+      it 'render destroy' do
+        delete :destroy, params: { id: answer }, format: :js
+        expect(response).to render_template :destroy
+      end
     end
   end
 
