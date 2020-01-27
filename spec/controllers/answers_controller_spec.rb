@@ -5,9 +5,8 @@ RSpec.describe AnswersController, type: :controller do
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }
 
-  before { sign_in(user) }
-
   describe 'POST #create' do
+    before { sign_in(user) }
 
     context 'with valid attributes' do
       it 'saves a new answer in the datebase' do
@@ -37,6 +36,8 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'DELETE #destroy' do
+    before { sign_in(user) }
+
     context 'user is author' do
       let!(:answer) { create(:answer, user: user, question: question) }
 
@@ -65,6 +66,8 @@ RSpec.describe AnswersController, type: :controller do
   end
 
   describe 'PATCH #update' do
+    before { sign_in(user) }
+
     context 'with valid attributes' do
       it 'changes answer attributes' do
         patch :update, params: { id: answer, answer: { body: 'new body' } }, format: :js
@@ -90,9 +93,23 @@ RSpec.describe AnswersController, type: :controller do
         expect(response).to render_template :update
       end
     end
+
+    context 'user is not author' do
+      let(:user1) { create(:user) }
+      before { sign_in(user1) }
+
+      it "user can't edit someone else's answer" do
+        patch :update, params: { id: answer, answer: {body: 'new body'} }, format: :js
+        answer.reload
+
+        expect(answer.body).to_not eq 'new body'
+      end
+    end
   end
 
   describe 'POST #best' do
+    before { sign_in(user) }
+
     context 'user is author question' do
       it 'changes answer attributes' do
         post :best, params: { id: answer }, format: :js
