@@ -5,7 +5,7 @@
       - if answer.best?
         i.material-icons.md-36 check
         span The best
-      - if current_user && current_user.author_of?(@question) && !answer.best?
+      - if current_user&.author_of?(@question) && !answer.best?
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
 
   .col-md-11.pt-2
@@ -23,7 +23,7 @@
       span.main-text-grey answered:
       span.main-text-grey= answer.user.email
 
-    - if current_user && current_user.author_of?(answer)
+    - if current_user&.author_of?(answer)
       .font-size-13.text-right.col-sm
         span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
         | |

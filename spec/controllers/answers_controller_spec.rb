@@ -85,6 +85,7 @@ RSpec.describe AnswersController, type: :controller do
       it 'does not change answer attributes' do
         expect do
           patch :update, params: { id: answer, answer: attributes_for(:answer, :invalid) }, format: :js
+          answer.reload
         end.to_not change(answer, :body)
       end
 
@@ -101,8 +102,12 @@ RSpec.describe AnswersController, type: :controller do
       it "user can't edit someone else's answer" do
         patch :update, params: { id: answer, answer: {body: 'new body'} }, format: :js
         answer.reload
-
         expect(answer.body).to_not eq 'new body'
+      end
+
+      it 'renders update view' do
+        patch :update, params: { id: answer, answer: {body: 'new body'} }, format: :js
+        expect(response).to render_template :update
       end
     end
   end

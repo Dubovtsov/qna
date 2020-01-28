@@ -5,7 +5,7 @@ $(document).on("turbolinks:load", function(){
     $('.control-panel').hide();
     $('.question-title').hide();
 
-    var questionId = $(this).data('questionId');
-    $("form#edit-question-" + questionId).removeClass('hidden');
+    var editQuestionId = $(this).data('questionId');
+    $("form#edit-question-" + editQuestionId).removeClass('hidden');
   });
 });
