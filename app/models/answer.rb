@@ -3,7 +3,7 @@ class Answer < ApplicationRecord
   belongs_to :user
 
   validates :body, presence: true, length: { minimum: 4 }
-  validates :best, uniqueness: { scope: :question_id } if :best?
+  # validates :best, uniqueness: { scope: :question_id } if :best?
   
   default_scope {order(best: :desc)}
 
