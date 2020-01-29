@@ -93,9 +93,9 @@ RSpec.describe QuestionsController, type: :controller do
         expect(question.body).to eq 'new body'
       end
 
-      it 'redirects to updated question' do
+      it 'renders update view' do
         patch :update, params: { id: question, question: attributes_for(:question) }, format: :js
-        expect(response).to redirect_to question
+        expect(response).to render_template :update
       end
     end
 
@@ -111,6 +111,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'renders update view' do
         patch :update, params: { id: question, question: attributes_for(:question, :invalid) }, format: :js
+        question.reload
         expect(response).to render_template :update
       end
     end
@@ -128,6 +129,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'renders update view' do
         patch :update, params: { id: question, question: { title: 'new title', body: 'new body'}, format: :js }
+        question.reload
         expect(response).to render_template :update
       end
     end

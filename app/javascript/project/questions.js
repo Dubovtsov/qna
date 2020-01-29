@@ -1,11 +1,11 @@
 $(document).on("turbolinks:load", function(){
-  $('.question').on('click', '.edit-question-link', function(e){
-    e.preventDefault();
+  $('.question').on('click', '.edit-question-link', function(event){
+    event.preventDefault();
     $(this).hide();
     $('.control-panel').hide();
     $('.question-title').hide();
 
-    var editQuestionId = $(this).data('questionId');
-    $("form#edit-question-" + editQuestionId).removeClass('hidden');
+    var QuestionId = $(this).data('questionId');
+    $("form#edit-question-" + QuestionId).removeClass('hidden');
   });
 });

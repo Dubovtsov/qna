@@ -1,8 +1,8 @@
 $(document).on("turbolinks:load", function(){
-  $('.answers').on('click', '.edit-answer-link', function(e){
-    e.preventDefault();
+  $('.answers').on('click', '.edit-answer-link', function(event){
+    event.preventDefault();
     $(this).hide();
-    var editAnswerId = $(this).data('answerId');
-    $("form#edit-answer-" + editAnswerId).removeClass('hidden');
+    var AnswerId = $(this).data('answerId');
+    $("form#edit-answer-" + AnswerId).removeClass('hidden');
   });
 });
