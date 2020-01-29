@@ -25,7 +25,14 @@
 
     - if current_user&.author_of?(answer)
       .font-size-13.text-right.col-sm
-        span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
+        span= link_to "Edit", 
+                      '#', 
+                      class: "edit-answer-link px-1 py-0", 
+                      data: { answer_id: answer.id }
         | |
-        span= link_to "Delete", answer, method: :delete, remote: true,
-        class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' } unless answer.body.empty?
+        span= link_to "Delete", 
+                      answer, 
+                      method: :delete, 
+                      remote: true,
+                      class: "px-1 py-0 text-grey", 
+                      data: { confirm: 'Are you sure?' } unless answer.body.empty?
