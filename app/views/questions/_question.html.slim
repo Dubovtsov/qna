@@ -1,9 +1,12 @@
 .question-title.border.p-4.bg-white
   h2= @question.title
   p.mb-0= @question.body
+  - if @question.file.attached?
+    p= link_to @question.file.filename.to_s, url_for(@question.file)
+
   .px-2.font-size-13.text-right.col-sm
-    span.main-text-grey asked:
-    span.main-text-grey= @question.user.email
+    span.main-text-grey= "asked: #{@question.user.email}"
+    
 .question-errors
   = render 'shared/errors', resource: @question
 = form_with model: @question, class: 'hidden question-form', html: { id: "edit-question-#{question.id}" } do |f|
