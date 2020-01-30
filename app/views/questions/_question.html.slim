@@ -1,8 +1,9 @@
 .question-title.border.p-4.bg-white
   h2= @question.title
   p.mb-0= @question.body
-  - if @question.file.attached?
-    p= link_to @question.file.filename.to_s, url_for(@question.file)
+  - if @question.files.attached?
+    - @question.files.each do |file|
+      p= link_to file.filename.to_s, url_for(file)
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey= "asked: #{@question.user.email}"
