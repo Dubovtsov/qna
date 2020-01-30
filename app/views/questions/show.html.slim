@@ -1,12 +1,13 @@
-= render @question
+.question 
+  =render @question
 .pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
 
-.border.bg-white
+#answers.answers.border.bg-white
   - if @question.answers.exists?
     =render @question.answers
   - else
-    span.p-2.font-size-13.text-warning
+    span.no-answers.p-2.font-size-13.text-warning
       | Ответов пока нет
 
 - if current_user

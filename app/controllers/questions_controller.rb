@@ -1,6 +1,6 @@
 class QuestionsController < ApplicationController
   before_action :authenticate_user!, except: %w[index show]
-  before_action :load_question, only: %w[show edit update destroy]
+  before_action :load_question, only: %w[show update destroy]
 
   def index
     @questions = Question.all
@@ -11,9 +11,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-  end
-
-  def edit
+    @answer = Answer.new
   end
 
   def create
@@ -28,12 +26,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update(question_params)
-    if @question.save
-      redirect_to @question
-    else
-      render :edit
-    end
+    @question.update(question_params) if current_user.author_of?(@question)
   end
 
   def destroy
