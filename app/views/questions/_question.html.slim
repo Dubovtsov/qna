@@ -23,7 +23,7 @@
 
 
 - if current_user&.author_of?(@question)
-  .border.control-panel.px-4.py-1.main-bg-dark.text-right
+  .control-panel.px-4.py-1.main-bg-dark.text-right
     span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-yellow ml-1 border", data: { question_id: question.id }
 
     span= link_to "delete", question_path(@question), method: :delete, class: "btn btn-sm px-2 py-0 main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }
