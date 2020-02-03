@@ -3,7 +3,9 @@
   p.mb-0= @question.body
   - if @question.files.attached?
     - @question.files.each do |file|
-      p= link_to file.filename.to_s, url_for(file)
+      span= link_to file.filename.to_s, url_for(file)
+      / = link_to 'delete', url_for(file.purge)
+      br
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey= "asked: #{@question.user.email}"
@@ -17,6 +19,9 @@
 
     = f.label :body
     = f.text_area :body, class: 'form-control'
+        
+    = f.label :files
+    = f.file_field :files, multiple: true
 
     = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success mt-2'
     = link_to 'Cancel', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
