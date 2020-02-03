@@ -4,7 +4,10 @@
   - if @question.files.attached?
     - @question.files.each do |file|
       span= link_to file.filename.to_s, url_for(file)
-      / = link_to 'delete', url_for(file.purge)
+      br
+      span= link_to 'delete', destroy_attached_file_question_path(file),
+                              method: :delete,
+                              data: { confirm: 'Are you sure?' }
       br
 
   .px-2.font-size-13.text-right.col-sm

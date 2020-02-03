@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[create]
-  before_action :load_answer, only: %i[edit update best destroy]
+  before_action :load_answer, only: %i[edit update best destroy destroy_attached_file]
 
   def create
     @answer = @question.answers.create(answer_params)
@@ -18,6 +18,10 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy if current_user.author_of?(@answer)
     flash[:notice] = 'Answer successfully delete'
+  end
+
+  def destroy_attached_file
+    @answer.files.find(params[:id]).purge
   end
 
   def best
