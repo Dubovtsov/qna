@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[create]
-  before_action :load_answer, only: %i[edit update best destroy destroy_attached_file]
+  before_action :load_answer, only: %i[edit update best destroy]
 
   def create
     @answer = @question.answers.create(answer_params)
@@ -21,7 +21,8 @@ class AnswersController < ApplicationController
   end
 
   def destroy_attached_file
-    @answer.files.find(params[:id]).purge
+    @file = ActiveStorage::Attachment.find(params[:id])
+    @file.purge
   end
 
   def best

@@ -26,6 +26,26 @@ feature 'User can delete a question', %q{
 
       expect(page).to_not have_content 'delete'
     end
+
+    scenario 'Author can remove any of the attached files to your question', js: true do
+      sign_in(users[0])
+      visit question_path(question)
+
+      within '.question' do
+        click_on 'edit'
+        fill_in 'Body', with: 'edited question'
+        attach_file 'question_files', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+        click_on 'Save'
+      end
+
+      within ".question-title" do
+        click_on 'delete', match: :first
+        page.driver.browser.switch_to.alert.accept
+
+        expect(page).to_not have_link 'rails_helper.rb'
+        expect(page).to have_link 'spec_helper.rb'
+      end
+    end
   end
 
   scenario "unauthenticated user tries to delete a question" do

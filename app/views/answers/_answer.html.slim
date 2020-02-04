@@ -19,11 +19,17 @@
       = f.text_area :body, class: 'form-control'
       = f.file_field :files, multiple: true, class: '.form-control-file mt-2'
       = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
+    
     .answer-info.row
       - if answer.files.attached?
       .files.col-md
         - answer.files.each do |file|
-          span.btn-file.px-2= link_to file.filename.to_s, url_for(file)
+          = content_tag(:div, id: "answer-attached-file-#{file.id}")
+            span.btn-file.px-2= link_to file.filename.to_s, url_for(file)
+            span= link_to 'delete', destroy_attached_file_answer_path(file),
+                                    method: :delete,
+                                    remote: true,
+                                    data: { confirm: 'Are you sure?' }
 
       .col-sm
         .font-size-13.text-right

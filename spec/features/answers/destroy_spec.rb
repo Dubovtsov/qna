@@ -28,6 +28,26 @@ feature 'User can delete own answers', %q(
     end
   end
 
+  scenario 'Author can remove any of the attached files to your answer', js: true do
+    sign_in(users[0])
+    visit question_path(question)
+
+    within '.answers' do
+      click_on 'Edit'
+      fill_in 'Body', with: 'edited question'
+      attach_file 'answer_files', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+      click_on 'save'
+    end
+
+    within ".files" do
+      click_on 'delete', match: :first
+      page.driver.browser.switch_to.alert.accept
+
+      expect(page).to_not have_link 'rails_helper.rb'
+      expect(page).to have_link 'spec_helper.rb'
+    end
+  end
+
   scenario 'Unauthenticated user tries to delete answer' do
     visit question_path(question)
 
