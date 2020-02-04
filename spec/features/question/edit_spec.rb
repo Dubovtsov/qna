@@ -63,7 +63,7 @@ feature 'User can edit own question', %q{
       click_on 'edit'
       fill_in 'Body', with: 'edited text'
 
-      attach_file 'File', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
+      attach_file 'question_files', ["#{Rails.root}/spec/rails_helper.rb", "#{Rails.root}/spec/spec_helper.rb"]
       click_on 'Save'
 
       expect(page).to have_link 'rails_helper.rb'

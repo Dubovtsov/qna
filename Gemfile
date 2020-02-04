@@ -30,6 +30,8 @@ gem "twitter-bootstrap-rails"
 gem 'sprockets-rails'
 gem 'jquery-rails'
 
+
+gem "aws-sdk-s3", require: false
 # ICONS
 gem 'material_icons'
 
