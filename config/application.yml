@@ -1,7 +1,0 @@
-development:
-  S3_BUCKET: 'dub-qna-dev'
-test:
-  S3_BUCKET: 'dub-qna-test'
-  # access_key AKIA3QEVZVOFSPSCWF6P
-production:
-  S3_BUCKET: 'dub-qna-production'
