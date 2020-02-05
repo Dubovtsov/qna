@@ -1,6 +1,7 @@
 .question-title.border.p-4.bg-white
   h2= @question.title
   p.mb-0= @question.body
+  / = render partial: "customer", object: @new_customer
   - if @question.files.attached?
     - @question.files.each do |file|
       = content_tag(:div, id: "question-attached-file-#{file.id}")
