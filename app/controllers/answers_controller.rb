@@ -20,11 +20,6 @@ class AnswersController < ApplicationController
     flash[:notice] = 'Answer successfully delete'
   end
 
-  def destroy_attached_file
-    @file = ActiveStorage::Attachment.find(params[:id])
-    @file.purge
-  end
-
   def best
     @question = @answer.question
     @answer.best! if current_user.author_of?(@question)

@@ -34,11 +34,6 @@ class QuestionsController < ApplicationController
     redirect_to questions_path, notice: 'Your question deleted successfully.'
   end
 
-  def destroy_attached_file
-    @file = ActiveStorage::Attachment.find(params[:id])
-    @file.purge
-  end
-
   private
 
   def load_question
