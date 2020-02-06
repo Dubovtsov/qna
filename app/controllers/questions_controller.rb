@@ -37,7 +37,6 @@ class QuestionsController < ApplicationController
   def destroy_attached_file
     @file = ActiveStorage::Attachment.find(params[:id])
     @file.purge
-    redirect_to question_path(@file.record_id)
   end
 
   private
