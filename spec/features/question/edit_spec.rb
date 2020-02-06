@@ -60,6 +60,9 @@ feature 'User can edit own question', %q{
     end
 
     scenario 'Author can add files when editing own question' do
+      expect(page).to_not have_link 'rails_helper.rb'
+      expect(page).to_not have_link 'spec_helper.rb'
+
       click_on 'edit'
       fill_in 'Body', with: 'edited text'
 

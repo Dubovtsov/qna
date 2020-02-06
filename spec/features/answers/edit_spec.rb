@@ -53,6 +53,9 @@ feature 'User can edit his answer', %q{
       visit question_path(question)
 
       within '.answers' do
+        expect(page).to_not have_link 'rails_helper.rb'
+        expect(page).to_not have_link 'spec_helper.rb'
+
         click_on 'Edit'
         fill_in 'answer_body', with: 'edited answer'
 

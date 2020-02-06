@@ -31,6 +31,7 @@ feature 'User can delete a question', %q{
       sign_in(users[0])
       visit question_path(question)
 
+      # Не знаю как сделать с помощтю фабрик
       within '.question' do
         click_on 'edit'
         fill_in 'Body', with: 'edited question'

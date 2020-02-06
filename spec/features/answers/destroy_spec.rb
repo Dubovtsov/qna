@@ -32,6 +32,7 @@ feature 'User can delete own answers', %q(
     sign_in(users[0])
     visit question_path(question)
 
+    # Не знаю как сделать с помощтю фабрик
     within '.answers' do
       click_on 'Edit'
       fill_in 'Body', with: 'edited question'
