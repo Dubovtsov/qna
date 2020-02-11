@@ -57,3 +57,14 @@ $main-dark: #011936;
 }
 
 .hidden { display: none }
+
+.btn-file {
+  background-color: white;
+  border: 1px solid gray;
+  border-radius: 2px;
+
+}
+
+.border-bottom-blue {
+  border-bottom: 2px solid $main-yellow;
+}

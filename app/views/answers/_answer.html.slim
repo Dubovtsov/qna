@@ -1,4 +1,4 @@
-.row.border-bottom.m-0.font-size-13 id="answer-#{answer.id}"
+.row.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
 
   .col-md-1.border-right.pt-2 
     .best
@@ -17,15 +17,23 @@
       .form-group
       = f.label :body, 'Body'
       = f.text_area :body, class: 'form-control'
+      = f.file_field :files, multiple: true, direct_upload: true, class: '.form-control-file mt-2'
       = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
+    
+    .answer-info.row
+      - if answer.files.attached?
+        .files.col-md
+          = render partial: "attachments/attached_files", locals: { resource: answer }
 
-    .font-size-13.text-right.col-sm
-      span.main-text-grey answered:
-      span.main-text-grey= answer.user.email
+          
+      .col-sm.mb-2
+        .font-size-13.text-right
+          span.main-text-grey answered:
+          span.main-text-grey= answer.user.email
 
-    - if current_user&.author_of?(answer)
-      .font-size-13.text-right.col-sm
-        span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
-        | |
-        span= link_to "Delete", answer, method: :delete, remote: true,
-        class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
+        - if current_user&.author_of?(answer)
+          .font-size-13.text-right
+            span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
+            | |
+            span= link_to "Delete", answer, method: :delete, remote: true,
+            class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
