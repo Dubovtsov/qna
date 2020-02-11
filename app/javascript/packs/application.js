@@ -22,7 +22,8 @@
 //
 require("@rails/ujs").start()
 global.Rails = Rails;
-
+//= require cocoon
+require("cocoon")
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")

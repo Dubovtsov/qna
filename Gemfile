@@ -30,6 +30,8 @@ gem "twitter-bootstrap-rails"
 gem 'sprockets-rails'
 gem 'jquery-rails'
 
+gem 'cocoon'
+
 
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails', :groups => [:development, :test]
