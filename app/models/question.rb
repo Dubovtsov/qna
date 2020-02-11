@@ -1,5 +1,7 @@
 class Question < ApplicationRecord
   has_many :answers, dependent: :destroy
+  has_many :links, dependent: :destroy
+
   belongs_to :user
 
   has_many_attached :files
