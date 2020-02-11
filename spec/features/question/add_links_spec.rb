@@ -16,9 +16,9 @@ feature 'User can add links to question', %q{
     fill_in 'Body', with: 'text text text'
 
     fill_in 'Link name', with: 'My gist'
-    fill_in 'Url', with: 'gist_url'
+    fill_in 'Url', with: gist_url
 
-    clicl_on 'Ask'
+    click_on 'Ask'
 
     expect(page).to have_link 'My gist', href: gist_url
   end

@@ -5,7 +5,13 @@
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey= "asked: #{@question.user.email}"
-    
+  
+  .links
+    p Links
+    ul
+      -@question.links.each do |link|
+        li= link_to  link.name, link.url
+
 .question-errors
   = render 'shared/errors', resource: @question
 = form_with model: @question, class: 'hidden question-form', html: { id: "edit-question-#{question.id}" } do |f|
@@ -16,7 +22,6 @@
     = f.label :body
     = f.text_area :body, class: 'form-control'
         
-    / = f.label :files
     = f.file_field :files, multiple: true, direct_upload: true, class: "mt-2"
 
     = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success float-right mx-2 mt-2'

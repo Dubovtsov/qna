@@ -24,7 +24,11 @@
       - if answer.files.attached?
         .files.col-md
           = render partial: "attachments/attached_files", locals: { resource: answer }
-
+      .links
+          p Links
+          ul
+            -@answer.links.each do |link|
+              li= link_to  link.name, link.url
           
       .col-sm.mb-2
         .font-size-13.text-right
