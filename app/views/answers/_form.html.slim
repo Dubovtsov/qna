@@ -8,7 +8,7 @@
   p Links
   = f.fields_for :links, @answer.links do |l|
     = render 'link_fields', f: l
-    / = link_to_add_association 'add task', f, :links
+    = link_to_add_association 'add task', f, :links
     
 
   = f.submit 'Reply', id: 'submit_answer', class: 'btn btn-hover float-right main-bg-yellow shadow-sm mt-2'
