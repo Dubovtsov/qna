@@ -4,10 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.3'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.1'
-# Use postgresql as the database for Active Record
+# gem 'rails', '~> 6.0.1'
+gem 'rails', '~> 5.2.4'
 gem 'pg', '>= 0.18', '< 2.0'
-# Use Puma as the app server
 gem 'puma', '~> 4.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
@@ -23,10 +22,11 @@ gem 'jbuilder', '~> 2.7'
 gem 'bcrypt', '~> 3.1.7'
 
 gem 'devise'
-
+gem 'coffee-rails', '~> 4.2'
 gem 'slim-rails'
 
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails" rails 6
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 gem 'sprockets-rails'
 gem 'jquery-rails'
 
