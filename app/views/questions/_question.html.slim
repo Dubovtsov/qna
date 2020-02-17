@@ -7,10 +7,7 @@
     span.main-text-grey= "asked: #{@question.user.email}"
   
   .links
-    p Links
-    ul
-      -@question.links.each do |link|
-        li= link_to  link.name, link.url
+    = render 'shared/links', links: question.links
 
 .question-errors
   = render 'shared/errors', resource: @question

@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'coffee-rails', '~> 4.2'
 gem 'slim-rails'
+gem "octokit", "~> 4.0"
 
 # gem "twitter-bootstrap-rails" rails 6
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'

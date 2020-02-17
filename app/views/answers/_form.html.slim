@@ -5,10 +5,6 @@
   .form-group
     = f.text_area :body, class: 'form-control'
     = f.file_field :files, multiple: true, class: '.form-control-file mt-2'
-  p Links
-  = f.fields_for :links, @answer.links do |l|
-    = render 'link_fields', f: l
-    = link_to_add_association 'add task', f, :links
-    
+    = render 'shared/links_form', form: f
 
   = f.submit 'Reply', id: 'submit_answer', class: 'btn btn-hover float-right main-bg-yellow shadow-sm mt-2'

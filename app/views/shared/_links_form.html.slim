@@ -1,0 +1,6 @@
+h5 Links:
+.links
+  = form.fields_for :links do |f|
+    = render 'shared/link_fields', f: f
+  .add_link
+    = link_to_add_association 'Add link', form, :links, partial: 'shared/link_fields', class: 'btn btn-hover btn-sm btn-success mt-2'
