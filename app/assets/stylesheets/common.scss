@@ -68,3 +68,10 @@ $main-dark: #011936;
 .border-bottom-blue {
   border-bottom: 2px solid $main-yellow;
 }
+
+.answer-form {
+  padding: 6px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  background-color: rgb(255, 237, 155);
+}

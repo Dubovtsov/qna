@@ -1,9 +1,8 @@
 .nested-fields.link-fields
   .form-row
-    .field.col.form-group
-      = f.label :name, 'Link name'
-      = f.text_field :name, class: 'form-control'
-    .field.col.form-group
-      = f.label :url
-      = f.text_field :url, class: 'form-control'
-  = link_to_remove_association "Remove link", f, class: 'btn btn-warning m-2'
+    .field.h-25.col.form-group.my-1
+      = f.text_field :name, class: 'form-control form-control-sm', placeholder: "Link name"
+    .field.h-25.col.form-group.my-1
+      = f.text_field :url, class: 'form-control form-control-sm', placeholder: "URL"
+    .col-md-2.allign-middle.field.form-group
+      = link_to_remove_association "Remove link", f, class: 'btn btn-sm my-1 btn-warning'
