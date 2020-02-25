@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# This file is the source Rails uses to define your schema when running `rails
-# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
-# be faster and is potentially less error prone than running all of your
-# migrations from scratch. Old migrations may fail to apply correctly if those
-# migrations use external dependencies or application code.
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_11_081859) do
+ActiveRecord::Schema.define(version: 2020_02_25_073603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,16 @@ ActiveRecord::Schema.define(version: 2020_02_11_081859) do
     t.index ["user_id"], name: "index_answers_on_user_id"
   end
 
+  create_table "badges", force: :cascade do |t|
+    t.string "name"
+    t.bigint "question_id"
+    t.bigint "answer_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_badges_on_answer_id"
+    t.index ["question_id"], name: "index_badges_on_question_id"
+  end
+
   create_table "links", force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -82,5 +92,7 @@ ActiveRecord::Schema.define(version: 2020_02_11_081859) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answers", "questions"
   add_foreign_key "answers", "users"
+  add_foreign_key "badges", "answers"
+  add_foreign_key "badges", "questions"
   add_foreign_key "questions", "users"
 end

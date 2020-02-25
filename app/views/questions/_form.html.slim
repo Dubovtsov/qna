@@ -7,6 +7,14 @@
 
     = f.label :body
     = f.text_area :body, class: 'form-control'
+    
+    = f.fields_for :badge do |b|
+      p
+        = b.label :name, 'Badge title'
+        = b.text_field :name
+      p  
+        = b.label :image
+        = b.file_field :image, direct_upload: true
 
     = f.label :files
     = f.file_field :files, multiple: true

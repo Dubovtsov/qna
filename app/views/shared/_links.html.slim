@@ -1,9 +1,9 @@
 - unless links.empty?
-  h5 Links:
-  ul.links.list-group.m-2
+  span.font-size-13.font-weight-bold.mt-2.mb-0.ml-3 Links:
+  ul.links.list-group.mb-2
     - links.each do |link|
       - cache [current_user || 'guest', link] do
-        li.list-group-item id="link-#{link.id}"
+        li.py-0.px-4 id="link-#{link.id}"
           -if link.gist?
             -link.gist.each do |file|
               p= file[:name]

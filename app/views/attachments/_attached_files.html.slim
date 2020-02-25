@@ -1,8 +1,10 @@
+span.font-size-13.font-weight-bold.mt-2.mb-0.ml-3 Files:
 - resource.files.each do |file|
   = content_tag(:div, id: "attached-file-#{file.id}")
-    span.btn-file.px-2= link_to file.filename.to_s, url_for(file)
+    span.py-0.px-4= link_to file.filename.to_s, url_for(file)
     - if current_user&.author_of?(resource)
       span= link_to 'delete', attachment_path(file),
+                              class: 'text-danger',
                               method: :delete,
                               remote: true,
                               data: { confirm: 'Are you sure?' }
