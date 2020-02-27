@@ -3,43 +3,31 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.3'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-# gem 'rails', '~> 6.0.1'
 gem 'rails', '~> 5.2.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
-# Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
-# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 4.0'
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+# gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
-# Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
 gem 'devise'
 gem 'coffee-rails', '~> 4.2'
 gem 'slim-rails'
 gem "octokit", "~> 4.0"
-
-# gem "twitter-bootstrap-rails" rails 6
 gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
+# gem "bootstrap-sass"
 gem 'sprockets-rails'
 gem 'jquery-rails'
-
 gem 'cocoon'
-
-
 gem "aws-sdk-s3", require: false
 gem 'dotenv-rails', :groups => [:development, :test]
 
 # ICONS
 gem 'material_icons'
-
 gem 'octicons_helper'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
