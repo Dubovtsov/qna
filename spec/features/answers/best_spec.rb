@@ -46,6 +46,22 @@ feature 'The user can choose the best answer to his question', %q{
         expect(page).to have_content answers.last.body
       end
     end
+
+    scenario 'user gets an badge' do
+      visit question_path(question)
+
+      within "#answer-#{answer_last.id}" do
+        click_on 'Best'
+      end
+
+      visit user_badges_path(answer_last.user)
+
+      badge = question.badge
+
+      expect(page).to have_content question.title
+      expect(page).to have_content badge.name
+      expect(page).to have_css "img[src*='#{badge.image.filename}']"
+    end
   end
 
   scenario 'Unauthenticated user tries to choose the best answer' do
