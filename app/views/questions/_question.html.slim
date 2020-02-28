@@ -2,6 +2,14 @@
   h2= @question.title
   p.mb-0= @question.body
   = render partial: "attachments/attached_files", locals: { resource: @question }
+  / - if @badges
+  /   p 
+  /   - @badges.each do |badge|
+  /     = badge.question.title
+  /     br
+  /     = badge.name 
+  /     br
+  /     = image_tag badge.image
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey= "asked: #{@question.user.email}"

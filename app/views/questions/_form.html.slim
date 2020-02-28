@@ -19,5 +19,7 @@
     = f.label :files
     = f.file_field :files, multiple: true
 
+    = render 'shared/links_form', form: f
+
     = f.submit 'Ask', class: 'btn btn-hover btn-sm btn-success mt-2'
     = link_to 'Back', questions_path, class: "btn btn-hover float-right btn-sm btn-danger mt-2"
