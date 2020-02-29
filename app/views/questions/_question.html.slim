@@ -2,14 +2,6 @@
   h2= @question.title
   p.mb-0= @question.body
   = render partial: "attachments/attached_files", locals: { resource: @question }
-  / - if @badges
-  /   p 
-  /   - @badges.each do |badge|
-  /     = badge.question.title
-  /     br
-  /     = badge.name 
-  /     br
-  /     = image_tag badge.image
 
   .px-2.font-size-13.text-right.col-sm
     span.main-text-grey= "asked: #{@question.user.email}"
@@ -28,6 +20,16 @@
     = f.text_area :body, class: 'form-control'
         
     = f.file_field :files, multiple: true, direct_upload: true, class: "mt-2"
+    
+    = render 'shared/links_form', form: f
+
+    = f.fields_for :badge do |b|
+      p
+        = b.label :name, 'Badge title'
+        = b.text_field :name
+      p  
+        = b.label :image
+        = b.file_field :image, direct_upload: true
 
     = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success float-right mx-2 mt-2'
     = link_to 'Cancel', question_path(question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
