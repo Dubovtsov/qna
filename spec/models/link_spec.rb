@@ -21,7 +21,7 @@ RSpec.describe Link, type: :model do
   end
 
   describe 'Link#gist?' do
-    let!(:gist_link) { build(:link, url: 'https://gist.github.com/shuklineg/781f42ffe9faad73c559b11cfb20e7aa') }
+    let!(:gist_link) { build(:link, url: 'https://gist.github.com/Dubovtsov/b1b4d2310cec6264d315d057cb4e223a') }
     let!(:google_link) { build(:link, url: 'http://google.com/') }
 
     it { expect(gist_link).to be_gist }
