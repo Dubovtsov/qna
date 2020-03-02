@@ -17,7 +17,8 @@ class Answer < ApplicationRecord
     transaction do
       question.answers.update_all(best: false)
       update!(best: true)
-      update!(badge: question.badge) if question.badge
+      question.badge&.update!(answer: self)
+      answer.user.badges << question.badge
     end
   end
 end
