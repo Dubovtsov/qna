@@ -1,7 +1,7 @@
 class Badge < ApplicationRecord
   belongs_to :question
   has_many :user_badges, dependent: :destroy
-  has_one :user, through: :user_badges
+  has_many :user, through: :user_badges
 
   has_one_attached :image
 
