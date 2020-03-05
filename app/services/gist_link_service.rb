@@ -1,4 +1,4 @@
-class Services::GistLinkService
+class GistLinkService
   GIST_FORMAT = /^(https|http):\/\/gist\.github\.com\/([^\/]+)\/([a-f0-9]+)$/i
 
   def initialize(url)

@@ -29,7 +29,7 @@ RSpec.describe Link, type: :model do
   end
 
   describe 'Link#gist' do
-    let!(:gist_link) { build(:link, url: 'https://gist.github.com/shuklineg/781f42ffe9faad73c559b11cfb20e7aa') }
+    let!(:gist_link) { build(:link, url: 'https://gist.github.com/Dubovtsov/b1b4d2310cec6264d315d057cb4e223a') }
 
     it { expect(gist_link.gist).to be_a_kind_of Array }
     it { expect(gist_link.gist.first).to include(content: 'Test text', name: 'test.txt') }

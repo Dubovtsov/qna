@@ -4,8 +4,9 @@
     - links.each do |link|
       - cache [current_user || 'guest', link] do
         li.py-0.px-4 id="link-#{link.id}"
-          -if link.gist?
-            -link.gist.each do |file|
+          - @link = GistLinkService.new(link.url)
+          -if @link.gist?
+            -@link.gist.each do |file|
               p= file[:name]
               code= file[:content]
           -else
