@@ -4,8 +4,9 @@ RSpec.describe Badge, type: :model do
   let(:question) { create(:question) }
 
   it { should validate_presence_of :name }
-  it { should belong_to(:answer).optional }
   it { should belong_to(:question) }
+  it { should have_many(:user_badges).dependent(:destroy) }
+  it { should have_many(:users).through(:user_badges) }
 
   it 'have one attached image' do
     expect(Badge.new.image).to be_an_instance_of(ActiveStorage::Attached::One)

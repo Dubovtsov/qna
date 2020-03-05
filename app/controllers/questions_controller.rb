@@ -15,7 +15,7 @@ class QuestionsController < ApplicationController
   def show
     @answer = Answer.new
     @answer.links.new
-    @question.build_badge
+    @question.build_badge if @question.badge.blank?
   end
 
   def create

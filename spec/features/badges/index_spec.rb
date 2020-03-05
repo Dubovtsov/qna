@@ -10,7 +10,7 @@ feature 'User can see list own badges', %q{
   given(:other_user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:answer) { create(:answer, question: question, user: other_user, best: true) }
-  given!(:badge) { create(:badge, question: question, answer: answer) }  
+  given!(:badge) { create(:badge, question: question) }  
   
   describe 'Authenticated user' do 
 
