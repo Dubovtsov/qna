@@ -4,5 +4,6 @@ FactoryBot.define do
     image { Rack::Test::UploadedFile.new("#{Rails.root}/spec/badge.png", 'image/png') }
 
     question
+    user
   end
 end
