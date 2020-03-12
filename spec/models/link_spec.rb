@@ -6,6 +6,8 @@ RSpec.describe Link, type: :model do
   it { should validate_presence_of :name }
   it { should validate_presence_of :url }
 
+  it { is_expected.to validate_url_of(:url) }
+
   describe 'validate url' do
     let(:question) { create(:question) }
     let!(:valid_url) { build(:link, url: 'http://google.com/', linkable: question) }
@@ -16,7 +18,7 @@ RSpec.describe Link, type: :model do
 
     it do
       invalid_url.validate
-      expect(invalid_url.errors[:url]).to include('must be a valid URL')
+      expect(invalid_url.errors[:url]).to include('is not a valid URL')
     end
   end
 
@@ -24,14 +26,14 @@ RSpec.describe Link, type: :model do
     let!(:gist_link) { build(:link, url: 'https://gist.github.com/Dubovtsov/b1b4d2310cec6264d315d057cb4e223a') }
     let!(:google_link) { build(:link, url: 'http://google.com/') }
 
-    it { expect(gist_link).to be_gist }
-    it { expect(google_link).to_not be_gist }
+    it { expect(gist_link).to be_is_gist }
+    it { expect(google_link).to_not be_is_gist }
   end
 
   describe 'Link#gist' do
     let!(:gist_link) { build(:link, url: 'https://gist.github.com/Dubovtsov/b1b4d2310cec6264d315d057cb4e223a') }
 
-    it { expect(gist_link.gist).to be_a_kind_of Array }
-    it { expect(gist_link.gist.first).to include(content: 'Test text', name: 'test.txt') }
+    it { expect(gist_link.show_gist).to be_a_kind_of Array }
+    it { expect(gist_link.show_gist.first).to include(content: 'class User', name: 'gistfile1.txt') }
   end
 end

@@ -3,6 +3,7 @@ class Link < ApplicationRecord
 
   validates :name, :url, presence: true
   validates :url, url: true
+  # validates :homepage, url: true
 
   def is_gist?
     @link = GistLinkService.new(self.url)
@@ -10,7 +11,8 @@ class Link < ApplicationRecord
   end
   
   def show_gist
-    self.gist
+    @link = GistLinkService.new(self.url)
+    @link.gist
   end
   
 end

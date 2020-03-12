@@ -18,8 +18,9 @@ feature 'User can add links to answer', %q{
 
     fill_in 'Link name', with: 'My gist'
     fill_in 'URL', with: gist_url
-
+    save_and_open_page
     click_on 'Reply'
+
 
     within '.answers' do
       expect(page).to have_link 'My gist', href: gist_url

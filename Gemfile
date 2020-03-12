@@ -26,6 +26,7 @@ gem 'octokit', '~> 4.0'
 gem 'rubocop'
 gem 'slim-rails'
 gem 'sprockets-rails'
+gem 'validate_url'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 # gem 'webpacker', '~> 4.0'
