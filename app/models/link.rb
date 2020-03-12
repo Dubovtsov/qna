@@ -3,4 +3,14 @@ class Link < ApplicationRecord
 
   validates :name, :url, presence: true
   validates :url, url: true
+
+  def is_gist?
+    @link = GistLinkService.new(self.url)
+    @link.gist?
+  end
+  
+  def show_gist
+    self.gist
+  end
+  
 end
