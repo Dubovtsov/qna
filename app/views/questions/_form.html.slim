@@ -7,9 +7,19 @@
 
     = f.label :body
     = f.text_area :body, class: 'form-control'
+    
+    = f.fields_for :badge do |b|
+      p
+        = b.label :name, 'Badge title'
+        = b.text_field :name
+      p  
+        = b.label :image
+        = b.file_field :image, direct_upload: true
 
     = f.label :files
     = f.file_field :files, multiple: true
+
+    = render 'shared/links_form', form: f
 
     = f.submit 'Ask', class: 'btn btn-hover btn-sm btn-success mt-2'
     = link_to 'Back', questions_path, class: "btn btn-hover float-right btn-sm btn-danger mt-2"

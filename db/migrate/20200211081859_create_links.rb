@@ -1,9 +1,9 @@
 class CreateLinks < ActiveRecord::Migration[6.0]
   def change
     create_table :links do |t|
-      t.string :name
-      t.string :url
-      t.references :question, foreign_key: true
+      t.string :name, null: false
+      t.string :url, null: false
+      t.references :linkable, polymorphic: true
 
       t.timestamps
     end

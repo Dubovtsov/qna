@@ -11,5 +11,9 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users do
+    resources :badges, only: %i[index]
+  end
+
   resources :attachments, only: :destroy
 end

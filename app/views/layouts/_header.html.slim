@@ -3,6 +3,8 @@ nav.shadow-sm.navbar.border.justify-content-between.mb-3.main-bg-yellow
     = link_to 'QnA', root_path, class: 'navbar-brand main-text-dark'
   span.navbar-text.float-right
     - if user_signed_in?
+      = link_to 'Badges', user_badges_path(current_user)
+      |  | 
       = current_user.email
       |  | 
       = link_to 'Logout', destroy_user_session_path, method: :delete

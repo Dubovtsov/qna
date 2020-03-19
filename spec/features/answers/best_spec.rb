@@ -9,6 +9,7 @@ feature 'The user can choose the best answer to his question', %q{
   given(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:answers) { create_list(:answer, 2, question: question, user: create(:user)) }
+  given!(:badge) { create(:question, user: user) }
 
   describe 'Authenticated user', js: true do
     background do
@@ -45,6 +46,21 @@ feature 'The user can choose the best answer to his question', %q{
       within first('.answers') do
         expect(page).to have_content answers.last.body
       end
+    end
+
+    scenario 'user gets an badge' do
+
+      visit question_path(question)
+
+      within "#answer-#{answers.last.id}" do
+        click_on 'Best'
+      end
+
+      visit user_badges_path(answers.last.user)
+      
+      expect(page).to have_content question.title
+      expect(page).to have_content badge.name
+      expect(page).to have_css "img[src*='#{badge.image.filename}']"
     end
   end
 
