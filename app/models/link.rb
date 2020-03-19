@@ -11,5 +11,4 @@ class Link < ApplicationRecord
   def show_gist
     GistLinkService.new(self.url).gist
   end
-  
 end
