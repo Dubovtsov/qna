@@ -1,42 +1,44 @@
-.row.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
+.answer.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
 
-  .col-md-1.border-right.pt-2 
+  .vote.border-right.text-center.p-2 
+    p.mb-1.rating Rating
+    p.mb-1 = link_to "+"
+    p.mb-1 = link_to "-"
+    
     .best
       - if answer.best?
         i.material-icons.md-36 check
-        span The best
+        p.mb-0 The best
       - if current_user&.author_of?(@question) && !answer.best?
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
 
-  .col-md-11.pt-2
-    p.mb-1= answer.body
-    = render 'shared/links', links: answer.links
+  p.answer-body.px-3.py-2= answer.body
+  .links = render 'shared/links', links: answer.links
     
-    = form_with model: answer, class: 'hidden', html: { id: "edit-answer-#{answer.id}" } do |f|
-      .answer-errors
-        = render 'shared/errors', resource: @answer
-      .form-group
-      = f.label :body, 'Body'
-      = f.text_area :body, class: 'form-control'
-      = f.file_field :files, multiple: true, direct_upload: true, class: '.form-control-file mt-2'
+  = form_with model: answer, class: 'hidden p-3 answer-body', html: { id: "edit-answer-#{answer.id}" } do |f|
+    .answer-errors
+      = render 'shared/errors', resource: @answer
+    .form-group
+    = f.label :body, 'Body'
+    = f.text_area :body, class: 'form-control'
+    = f.file_field :files, multiple: true, direct_upload: true, class: '.form-control-file mt-2'
 
-      = render 'shared/links_form', form: f
+    = render 'shared/links_form', form: f
 
-      = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
+    = f.submit 'save', class: 'btn btn-hover main-bg-yellow shadow-sm mt-2'
     
-    .answer-info.row
-      - if answer.files.attached?
-        .files.col-md
-          = render partial: "attachments/attached_files", locals: { resource: answer }
-          
-      .col-md-3.mb-2
-        .font-size-13.text-right
-          span.main-text-grey answered:
-          span.main-text-grey= answer.user.email
+  
+  - if answer.files.attached?
+    .files
+      = render partial: "attachments/attached_files", locals: { resource: answer }
 
-        - if current_user&.author_of?(answer)
-          .font-size-13.text-right
-            span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
-            | |
-            span= link_to "Delete", answer, method: :delete, remote: true,
-            class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
+  .answer-info.font-size-13.user-info.text-right
+    span.main-text-grey answered:
+    span.main-text-grey= answer.user.email
+
+    - if current_user&.author_of?(answer)
+      .font-size-13.text-right
+        span= link_to "Edit", '#', class: "edit-answer-link px-1 py-0", data: { answer_id: answer.id }
+        | |
+        span= link_to "Delete", answer, method: :delete, remote: true,
+        class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
