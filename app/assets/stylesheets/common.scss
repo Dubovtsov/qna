@@ -22,6 +22,7 @@ $main-dark: #011936;
   display: grid;
   grid-template-columns: 80px auto 150px;
   grid-template-areas: "vote body body"
+                       "vote form form"
                        "vote files files"
                        "vote links links"
                        "vote user user";
@@ -45,6 +46,10 @@ $main-dark: #011936;
 
 .answer-body {
   grid-area: body;
+}
+
+.answer-form {
+  grid-area: form;
 }
 
 .files {

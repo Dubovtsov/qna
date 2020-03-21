@@ -13,9 +13,10 @@
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
 
   p.answer-body.px-3.py-2= answer.body
+
   .links = render 'shared/links', links: answer.links
     
-  = form_with model: answer, class: 'hidden p-3 answer-body', html: { id: "edit-answer-#{answer.id}" } do |f|
+  = form_with model: answer, class: 'hidden p-3 answer-form', html: { id: "edit-answer-#{answer.id}" } do |f|
     .answer-errors
       = render 'shared/errors', resource: @answer
     .form-group
