@@ -1,8 +1,11 @@
 .question-title.bg-white
   .vote.p-2.text-center.border-right-yellow
-    p.mb-1.rating Rating
-    p.mb-1 = link_to "+"
-    p.mb-1 = link_to "-"
+    / -if can? :vote_up, question
+    = link_to '+', vote_up_question_path(question), class: 'votes vote-up btn mb-1', method: :post, remote: true
+    .votes-count.btn.main-bg-red.text-white.disabled= question.rating
+    / -if can? :vote_down, question
+    = link_to '-', vote_down_question_path(question), class: 'votes vote-down btn mb-1', method: :post, remote: true
+  
   .grid-title.h3.pl-3.mb-0= @question.title
   .question-body.p-3
     p.mb-0= @question.body
