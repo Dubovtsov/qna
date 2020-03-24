@@ -1,11 +1,12 @@
 .answer.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
 
+  div id="answer-#{answer.id}" class=("best-answer" if answer.best) data-id="#{answer.id}"
   .vote.border-right.text-center.p-2 
     / -if can? :vote_up, answer
-    = link_to '+', vote_up_answer_path(answer), class: 'votes vote-up btn mb-1', method: :post, remote: true
+    = link_to '+', voteup_answer_path(answer), class: 'votes vote-up btn mb-1', method: :post, remote: true
     .votes-count.btn.btn-success.disabled= answer.rating
     / -if can? :vote_down, answer
-    = link_to '-', vote_down_answer_path(answer), class: 'votes vote-down btn mb-1', method: :post, remote: true
+    = link_to '-', votedown_answer_path(answer), class: 'votes vote-down btn mb-1', method: :post, remote: true
     
     .best
       - if answer.best?

@@ -5,8 +5,8 @@ Rails.application.routes.draw do
 
   concern :votable do
     member do
-      post :vote_up
-      post :vote_down
+      post :voteup
+      post :votedown
     end
   end
 
