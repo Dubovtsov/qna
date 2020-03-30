@@ -1,10 +1,10 @@
 .question-title.bg-white data-question-id="#{question.id}" id="question-#{question.id}"
   .vote.p-2.text-center.border-right-yellow
-    / -if can? :vote_up, question
-    = link_to '+', voteup_question_path(question), class: 'votes vote-up btn mb-1', method: :post, remote: true, data: { type: :json }
+    - if user_signed_in?
+      = link_to '+', voteup_question_path(question), class: 'votes vote-up btn mb-1', method: :post, remote: true, data: { type: :json }
     .votes-count.btn.main-bg-red.text-white.disabled= question.rating
-    / -if can? :vote_down, question
-    = link_to '-', votedown_question_path(question), class: 'votes vote-down btn mb-1', method: :post, remote: true, data: { type: :json }
+    - if user_signed_in?
+      = link_to '-', votedown_question_path(question), class: 'votes vote-down btn mb-1', method: :post, remote: true, data: { type: :json }
   
   .grid-title.h3.pl-3.mb-0= @question.title
   .question-body.p-3
