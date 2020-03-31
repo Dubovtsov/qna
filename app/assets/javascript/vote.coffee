@@ -4,8 +4,8 @@ $(document).on 'turbolinks:load', ->
 
   $('.votes').on('ajax:success', (e) ->
     vote = e.detail[0]
-
-    $('#' + vote.model + '-' + vote.object_id + '.votes-count').html vote.value
+    console.log(vote)
+    $('#' + vote.model + '-' + vote.object_id + ' .votes-count').html(vote.value)
   ).on('ajax:error', (e) ->
     errors = e.detail[0]
 

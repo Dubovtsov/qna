@@ -27,7 +27,7 @@ module Voted
     if result.errors.any?
       render json: result.errors.full_messages, status: 422
     else
-      render json: @votable.rating, status: :ok
+      render json: { object_id: @votable.id, value: @votable.rating, model: @votable.class.name.underscore }, status: :ok
     end
   end
 end  
