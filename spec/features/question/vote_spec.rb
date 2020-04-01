@@ -1,39 +1,39 @@
 require 'rails_helper'
 
-feature 'User can vote for the answer', %q(
-  In order to raise the answer rate
+feature 'User can vote for the question', %q(
+  In order to raise the question rate
   As an authenticated user
-  I'd like to be able to vote for the answer
+  I'd like to be able to vote for the question
 ) do
-  given(:question) { create(:question) }
-  given!(:answer) { create(:answer, question: question) }
+  given!(:question) { create(:question) }
 
   describe 'Authenticated user', js: true do
     given(:user) { create(:user) }
-    given!(:owned_answer) { create(:answer, question: question, user: user) }
+    given!(:owned_question) { create(:question, user: user) }
 
     background do
-      sign_in user
+      sign_in(user)
       visit question_path(question)
     end
 
-    scenario 'can vote for the answer' do
-      within "#answer-#{answer.id}" do
+    scenario 'can vote for the question' do
+      within "#question-#{question.id}" do
         expect(page.find('.votes-count')).to have_content '0'
         click_on '+'
         expect(page.find('.votes-count')).to have_content '1'
       end
     end
 
-    scenario 'tries vote for the owned answer' do
-      within "#answer-#{owned_answer.id}" do
+    scenario 'tries vote for the owned question' do
+      visit question_path(owned_question)
+      within "#question-#{owned_question.id}" do
         expect(page).to_not have_link '+'
         expect(page).to_not have_link '-'
       end
     end
 
-    scenario 'can vote down for the answer' do
-      within "#answer-#{answer.id}" do
+    scenario 'can vote down for the question' do
+      within "#question-#{question.id}" do
         expect(page.find('.votes-count')).to have_content '0'
         click_on '-'
         expect(page.find('.votes-count')).to have_content '-1'
@@ -41,7 +41,7 @@ feature 'User can vote for the answer', %q(
     end
 
     scenario 'change vote' do
-      within "#answer-#{answer.id}" do
+      within "#question-#{question.id}" do
         click_on '-'
         expect(page.find('.votes-count')).to have_content '-1'
         click_on '+'
@@ -52,7 +52,7 @@ feature 'User can vote for the answer', %q(
     end
 
     scenario "can't vote twice" do
-      within "#answer-#{answer.id}" do
+      within "#question-#{question.id}" do
         click_on '-'
         click_on '-'
       end
@@ -60,16 +60,16 @@ feature 'User can vote for the answer', %q(
     end
 
     scenario 'can see rate' do
-      create_list(:vote, 3, user: create(:user), value: -1, votable: answer)
+      create_list(:vote, 3, user: create(:user), value: 1, votable: question)
 
-      within "#answer-#{answer.id}" do
+      within "#question-#{question.id}" do
         click_on '+'
-        expect(page.find('.votes-count')).to have_content '-2'
+        expect(page.find('.votes-count')).to have_content '4'
       end
     end
   end
 
-  scenario "Unauthenticated user can't vote for the answer" do
+  scenario "Unauthenticated user can't vote for the question" do
     visit question_path(question)
     expect(page).to_not have_link '+'
     expect(page).to_not have_link '-'

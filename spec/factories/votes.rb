@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :vote do
-    references { "" }
-    references { "" }
-    value { 1 }
+    association :user
   end
 end

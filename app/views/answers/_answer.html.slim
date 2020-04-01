@@ -2,10 +2,10 @@
 
   div id="answer-#{answer.id}" class=("best-answer" if answer.best) data-id="#{answer.id}"
   .vote.border-right.text-center.p-2 
-    - if user_signed_in?
+    - if user_signed_in? && !current_user&.author_of?(answer)
       = link_to '+', voteup_answer_path(answer), class: 'votes vote-up btn mb-1', method: :post, remote: true, data: { type: :json }
     .votes-count.btn.btn-success.disabled= answer.rating
-    - if user_signed_in?
+    - if user_signed_in? && !current_user&.author_of?(answer)
       = link_to '-', votedown_answer_path(answer), class: 'votes vote-down btn mb-1', method: :post, remote: true, data: { type: :json }
     
     .best

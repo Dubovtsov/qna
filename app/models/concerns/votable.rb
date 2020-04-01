@@ -13,8 +13,6 @@ module Votable
     vote(-1, user)
   end
 
-  # rate
-
   def rating
     votes.sum(:value)
   end  
