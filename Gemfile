@@ -13,14 +13,10 @@ gem 'devise'
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
-<<<<<<< HEAD
-gem 'puma', '~> 4.1'
 gem 'rails', '~> 5.2.4'
-=======
 # Use Puma as the app server
 gem 'puma', '~> 4.3'
 # Use SCSS for stylesheets
->>>>>>> master
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'
 # Use Redis adapter to run Action Cable in production

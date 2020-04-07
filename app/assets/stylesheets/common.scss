@@ -7,6 +7,59 @@ $main-yellow: #F9DC5C;
 $main-grey: #C2C2C2;
 $main-dark: #011936;
 
+
+.question-title {
+  display: grid;
+  grid-template-columns: 80px auto 150px;
+  grid-template-areas: "vote title title"
+                       "vote user user"
+                       "vote body body"
+                       "vote files files"
+                       "vote links links";
+}
+
+.answer {
+  display: grid;
+  grid-template-columns: 80px auto 150px;
+  grid-template-areas: "vote body body"
+                       "vote form form"
+                       "vote files files"
+                       "vote links links"
+                       "vote user user";
+}
+
+.vote {
+  grid-area: vote;
+}
+
+.user-info {
+  grid-area: user;
+}
+
+.grid-title {
+  grid-area: title;
+}
+
+.question-body {
+  grid-area: body;
+}
+
+.answer-body {
+  grid-area: body;
+}
+
+.answer-form {
+  grid-area: form;
+}
+
+.files {
+  grid-area: files;
+}
+
+.links {
+  grid-area: links;
+}
+
 .main-bg-red {
   background-color: $main-red
 }
@@ -69,6 +122,10 @@ $main-dark: #011936;
   border-bottom: 2px solid $main-yellow;
 }
 
+.border-right-yellow {
+  border-right: 2px solid $main-yellow;
+}
+
 .answer-form {
   padding: 6px;
   border: 1px solid gray;
@@ -78,4 +135,8 @@ $main-dark: #011936;
 
 li {
   list-style-type: none;
+}
+
+.shadow-default {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
