@@ -6,13 +6,13 @@ class Vote < ApplicationRecord
   validates :value, inclusion: { in: [-1, 1], message: "You can't vote twice" }
 
   def self.vote_up(user, votable)
-    vote = Vote.where(user: user, votable: votable).find_or_create_by(user: user, votable: votable)
+    vote = Vote.find_or_create_by(user: user, votable: votable)
     vote.value += 1
     destroy_if_revote(vote)
   end
 
   def self.vote_down(user, votable)
-    vote = Vote.where(user: user, votable: votable).find_or_create_by(user: user, votable: votable)
+    vote = Vote.find_or_create_by(user: user, votable: votable)
     vote.value -= 1
     destroy_if_revote(vote)
   end
@@ -22,7 +22,7 @@ class Vote < ApplicationRecord
     vote.destroy
     nil
   end
-  
+
   private 
 
   def author_cant_vote
