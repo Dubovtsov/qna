@@ -4,6 +4,8 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[edit update best destroy]
+  
+  after_action :publish_question, only: [:create]
 
   def create
     @answer = @question.answers.create(answer_params)
@@ -28,6 +30,17 @@ class AnswersController < ApplicationController
   end
 
   private
+
+  def publish_answer
+    return if @answer.errors.any?
+    ActionCable.server.broadcast(
+      'answerss', 
+      ApplicationController.render(
+        partial: 'answers/answer',
+        locals: { answer: @answer }
+      )
+    )
+  end
 
   def load_answer
     @answer = Answer.with_attached_files.find(params[:id])
