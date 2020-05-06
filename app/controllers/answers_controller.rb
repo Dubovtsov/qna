@@ -5,7 +5,7 @@ class AnswersController < ApplicationController
   before_action :find_question, only: %i[create]
   before_action :load_answer, only: %i[edit update best destroy]
   
-  after_action :publish_question, only: [:create]
+  after_action :publish_answer, only: [:create]
 
   def create
     @answer = @question.answers.create(answer_params)
@@ -34,7 +34,7 @@ class AnswersController < ApplicationController
   def publish_answer
     return if @answer.errors.any?
     ActionCable.server.broadcast(
-      'answerss', 
+      'answers', 
       ApplicationController.render(
         partial: 'answers/answer',
         locals: { answer: @answer }

@@ -5,35 +5,13 @@ $ ->
     AnswerId = $(this).data('answerId')
     $('form#edit-answer-' + AnswerId).removeClass 'hidden'
 
-  App.cable.subscriptions.create('AnswersChannel', {
+  questionId = $('.question').data 'questionId'
+  if questionId
+    App.cable.subscriptions.create { channel: 'AnswersChannel', id: questionId },
     connected: ->
-      console.log 'Connected!'
       @perform 'follow'
+      App.channels.push this
     ,
-
     received: (data) ->
-      $('.answers-list').append data
-  })
-
-
-# App.cable.subscriptions.create('AnswersChannel', {
-#   connected(){ 
-#     var question_id = $('.question').data('id')
-
-#     if (question_id) {
-#       this.perform('follow_answers', {id: question_id});
-#     } else {
-#       this.perform('unfollow');
-#     }
-#   }, 
-
-#   received: function (data) {
-#         var current_user_id = gon.current_user_id,
-#             answer_user_id = JSON.parse(data["answer_user_id"]);
-#         if (current_user_id !== answer_user_id) {
-#             $('.answers').append(JST["templates/answers/answer"]({
-#                 data: data
-#             }));
-#         }
-#     }
-# });
+      if current_user.id != data.answer.user_id
+        $('.answers').append JST["templates/answer"]( { answer: data.answer, links: data.links, files: data.files } )
