@@ -14,4 +14,4 @@ $ ->
     ,
     received: (data) ->
       if current_user.id != data.answer.user_id
-        $('.answers').append JST["templates/answer"]( { answer: data.answer, links: data.links, files: data.files } )
+        $('.answers-list').append JST["answers/answer"]( { answer: data.answer, links: data.links, files: data.files } )
