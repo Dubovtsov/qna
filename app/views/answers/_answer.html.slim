@@ -46,3 +46,4 @@
         | |
         span= link_to "Delete", answer, method: :delete, remote: true,
         class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
+  = render 'shared/comments', commentable: answer
