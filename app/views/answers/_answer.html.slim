@@ -36,9 +36,15 @@
     .files
       = render partial: "attachments/attached_files", locals: { resource: answer }
 
-  .answer-info.font-size-13.user-info.text-right
+  .panel.font-size-13.user-info.text-right
     span.main-text-grey answered:
+    br
     span.main-text-grey= answer.user.email
+    br
+
+    - if current_user
+      - commentable = answer
+      = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
 
     - if current_user&.author_of?(answer)
       .font-size-13.text-right
@@ -46,4 +52,8 @@
         | |
         span= link_to "Delete", answer, method: :delete, remote: true,
         class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
-  = render 'shared/comments', commentable: answer
+  .comments
+    details
+      summary Comments
+    
+      = render 'shared/comments', commentable: answer

@@ -11,21 +11,21 @@ $main-dark: #011936;
 .question-title {
   display: grid;
   grid-template-columns: 80px auto 150px;
-  grid-template-areas: "vote title title"
-                       "vote user user"
-                       "vote body body"
-                       "vote files files"
-                       "vote links links";
+  grid-template-areas: "vote title panel"
+                       "vote user panel"
+                       "vote body panel"
+                       "vote files panel"
+                       "vote links panel";
 }
 
 .answer {
   display: grid;
   grid-template-columns: 80px auto 150px;
-  grid-template-areas: "vote body body"
-                       "vote form form"
-                       "vote files files"
-                       "vote links links"
-                       "vote user user";
+  grid-template-areas: "vote body panel"
+                       "vote form panel"
+                       "vote files panel"
+                       "vote links panel"
+                       "comments comments comments";
 }
 
 .vote {
@@ -58,6 +58,14 @@ $main-dark: #011936;
 
 .links {
   grid-area: links;
+}
+
+.panel {
+  grid-area: panel;
+}
+
+.comments {
+  grid-area: comments;
 }
 
 .main-bg-red {
@@ -139,4 +147,11 @@ li {
 
 .shadow-default {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+details summary {
+  color: green;
+  list-style-type: none;
+  display: block;
+  align-content: center;
 }
