@@ -7,6 +7,8 @@ class AnswersController < ApplicationController
   
   after_action :publish_answer, only: [:create]
 
+  expose :comment, -> { answer.comments.new }
+
   def create
     @answer = @question.answers.create(answer_params)
     @answer.user = current_user

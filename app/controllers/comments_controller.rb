@@ -1,14 +1,14 @@
 class CommentsController < ApplicationController
   before_action :set_commentable, only: :create
   before_action :authenticate_user!
-  before_action :find_comment, only: :create
   after_action :publish_comment, only: :create
 
+  expose :comment
+
   def create
-    @comment = Comment.new
-    @commentable.comments << @comment
-    @comment.user = current_user
-    @comment.save
+    @commentable.comments << comment
+    comment.user = current_user
+    comment.save
   end
 
   private
@@ -21,10 +21,6 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body)
-  end
-
-  def find_comment
-    @comment = Comment.find(params[:question_id])
   end
 
   def publish_comment

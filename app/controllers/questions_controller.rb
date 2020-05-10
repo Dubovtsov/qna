@@ -6,6 +6,12 @@ class QuestionsController < ApplicationController
 
   after_action :publish_question, only: [:create]
 
+  expose :questions, -> { Question.all }
+  expose :question, scope: -> { Question.with_attached_files }
+  expose :answers, from: :question
+  expose :answer, -> { Answer.new }
+  expose :comment, -> { question.comments.new }
+
   def index
     @questions = Question.all
   end

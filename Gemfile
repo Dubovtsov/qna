@@ -11,7 +11,7 @@ gem 'cocoon'
 gem 'coffee-rails', '~> 4.2'
 gem 'devise'
 gem 'dotenv-rails', :groups => [:development, :test]
-
+gem 'decent_exposure'
 gem 'gon'
 gem 'skim'
 gem 'rabl'
