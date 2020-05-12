@@ -149,9 +149,12 @@ li {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 
-details summary {
-  color: green;
-  list-style-type: none;
+summary {
+  background-color: $main-yellow;
+  height: 20px;
+  list-style: none;
   display: block;
-  align-content: center;
+  text-align: center;
+
+  &::-webkit-details-marker { display: none; }
 }
