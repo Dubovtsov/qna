@@ -43,12 +43,23 @@
       = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success float-right mx-2 mt-2'
       = link_to 'Cancel', question_path(@question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
 
+  - if current_user
+    - commentable = question
+    = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
 
   - if current_user&.author_of?(@question)
     .control-panel.px-4.py-1.main-bg-dark.text-right
       span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-yellow ml-1 border", data: { question_id: @question.id }
 
       span= link_to "delete", question_path(@question), method: :delete, class: "btn btn-sm px-2 py-0 main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }
+
+  .comments.border-bottom.border-top
+    details
+      summary = "Comments (#{question.comments.count})"
+    
+      = render 'shared/comments', commentable: question
+br
+
 
 .mt-2.pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
