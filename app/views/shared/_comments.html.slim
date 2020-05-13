@@ -1,6 +1,6 @@
-div.comments data-commentable="#{commentable.class.name.underscore}" data-commentable-id="#{commentable.id}" = render commentable.comments
+div.comments-card data-commentable="#{commentable.class.name.underscore}" data-commentable-id="#{commentable.id}" = render commentable.comments
 - if current_user
-  = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
+  / = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
   = form_with model: [commentable, comment], class: 'comment-form hidden', id: "comment-form-#{commentable.class.name.underscore}-#{commentable.id}" do |f|
     div.comment-errors
       = render 'shared/errors', resource: comment

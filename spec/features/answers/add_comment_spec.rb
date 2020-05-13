@@ -11,12 +11,12 @@ feature 'User can add comments to question', %q(
 
   describe 'Authenticated user' do
     background do
-      login(user)
+      sign_in(user)
       visit question_path(question)
     end
 
     scenario 'add valid comment' do
-      within '.question' do
+      within '.answer' do
         expect(page).to_not have_content comment_text
 
         click_on 'Add comment'
@@ -34,7 +34,7 @@ feature 'User can add comments to question', %q(
     end
 
     scenario 'add invalid comment' do
-      within '.question' do
+      within '.answer' do
         click_on 'Add comment'
         within '.comment-form' do
           fill_in 'Body', with: ''
@@ -49,7 +49,7 @@ feature 'User can add comments to question', %q(
   scenario 'Unauthenticated user tries add comment' do
     visit question_path(question)
 
-    within '.question' do
+    within '.answer' do
       expect(page).to_not have_link 'Add comment'
     end
   end
@@ -61,7 +61,7 @@ feature 'User can add comments to question', %q(
 
     scenario "comment appears on another user's page" do
       Capybara.using_session('user') do
-        login(user)
+        sign_in(user)
         visit question_path(question)
       end
 
@@ -74,12 +74,12 @@ feature 'User can add comments to question', %q(
       end
 
       Capybara.using_session('another_user') do
-        login(another_user)
+        sign_in(another_user)
         visit question_path(question)
       end
 
       Capybara.using_session('user') do
-        within '.question' do
+        within '.answer' do
           click_on 'Add comment'
 
           within '.comment-form' do
@@ -92,13 +92,13 @@ feature 'User can add comments to question', %q(
       end
 
       Capybara.using_session('guest') do
-        within '.question' do
+        within '.answer' do
           expect(page).to have_content comment_text
         end
       end
 
       Capybara.using_session('another_user') do
-        within '.question' do
+        within '.answer' do
           expect(page).to have_content comment_text
         end
       end
