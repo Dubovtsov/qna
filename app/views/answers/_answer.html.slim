@@ -14,8 +14,11 @@
         p.mb-0 The best
       - if current_user&.author_of?(@question) && !answer.best?
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
-
-  p.answer-body.px-3.py-2= answer.body
+  
+  .answer-body.px-3.py-2
+    .main-text-grey.text-underline 
+      ins = "answered: #{answer.user.email}"
+    = answer.body
 
   .links = render 'shared/links', links: answer.links
     
@@ -36,15 +39,10 @@
     .files
       = render partial: "attachments/attached_files", locals: { resource: answer }
 
-  .panel.font-size-13.user-info.text-right
-    span.main-text-grey answered:
-    br
-    span.main-text-grey= answer.user.email
-    br
-
+  .panel.py-2.px-3.font-size-13.user-info.text-right
     - if current_user
       - commentable = answer
-      = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
+      = link_to 'Add comment', '#', class: 'add-comment-link btn btn-hover btn-sm main-bg-yellow shadow-sm', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
 
     - if current_user&.author_of?(answer)
       .font-size-13.text-right

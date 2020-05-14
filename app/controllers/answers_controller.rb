@@ -7,6 +7,8 @@ class AnswersController < ApplicationController
   
   after_action :publish_answer, only: [:create]
 
+  expose :answers, from: :question
+  expose :answer, scope: -> { Answer.with_attached_files }
   expose :comment, -> { answer.comments.new }
 
   def create
