@@ -5,13 +5,16 @@ $ ->
     AnswerId = $(this).data('answerId')
     $('form#edit-answer-' + AnswerId).removeClass 'hidden'
 
-  questionId = $('.question').data 'questionId'
+  questionId = $('.question-title').data 'questionId'
   if questionId
     App.cable.subscriptions.create { channel: 'AnswersChannel', id: questionId },
     connected: ->
+      console.log 'Connected!'
       @perform 'follow'
-      App.channels.push this
+      # debugger
+      # App.channels.push this
     ,
     received: (data) ->
+      console.log 'Data return!'
       if current_user.id != data.answer.user_id
         $('.answers-list').append JST["answers/answer"]( { answer: data.answer, links: data.links, files: data.files } )
