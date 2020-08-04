@@ -16,6 +16,9 @@ gem 'gon'
 gem 'skim'
 gem 'rabl'
 
+gem 'omniauth'
+gem 'omniauth-github'
+
 gem 'jbuilder', '~> 2.7'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rails', '~> 5.2.4'
