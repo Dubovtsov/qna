@@ -1,4 +1,4 @@
-.answer.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
+.answer.shadow.rounded.answers-list.border-bottom-blue.m-0.font-size-13 id="answer-#{answer.id}"
 
   div id="answer-#{answer.id}" class=("best-answer" if answer.best) data-id="#{answer.id}"
   .vote.border-right.text-center.p-2 
@@ -14,8 +14,11 @@
         p.mb-0 The best
       - if current_user&.author_of?(@question) && !answer.best?
         = link_to 'Best answer', best_answer_path(answer), method: :post, remote: true
-
-  p.answer-body.px-3.py-2= answer.body
+  
+  .answer-body.px-3.py-2
+    .main-text-grey.text-underline 
+      ins = "answered: #{answer.user.email}"
+    = answer.body
 
   .links = render 'shared/links', links: answer.links
     
@@ -36,9 +39,10 @@
     .files
       = render partial: "attachments/attached_files", locals: { resource: answer }
 
-  .answer-info.font-size-13.user-info.text-right
-    span.main-text-grey answered:
-    span.main-text-grey= answer.user.email
+  .panel.py-2.px-3.font-size-13.user-info.text-right
+    - if current_user
+      - commentable = answer
+      = link_to 'Add comment', '#', class: 'add-comment-link btn btn-hover btn-sm main-bg-yellow shadow-sm', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
 
     - if current_user&.author_of?(answer)
       .font-size-13.text-right
@@ -46,3 +50,9 @@
         | |
         span= link_to "Delete", answer, method: :delete, remote: true,
         class: "px-1 py-0 text-grey", data: { confirm: 'Are you sure?' }
+  .comments.border-bottom.border-top
+    details
+      summary = "Comments (#{answer.comments.count})"
+    
+      = render 'shared/comments', commentable: answer
+br

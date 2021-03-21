@@ -1,5 +1,66 @@
 .question
-  =render @question
+  .question-title.bg-white data-question-id="#{@question.id}" id="question-#{@question.id}"
+    .vote.p-2.text-center.border-right-yellow
+      - if user_signed_in? && !current_user&.author_of?(@question)
+        = link_to '+', voteup_question_path(@question), class: 'votes vote-up btn mb-1', method: :post, remote: true, data: { type: :json }
+      .votes-count.btn.main-bg-red.text-white.disabled= @question.rating
+      - if user_signed_in? && !current_user&.author_of?(@question)
+        = link_to '-', votedown_question_path(@question), class: 'votes vote-down btn mb-1', method: :post, remote: true, data: { type: :json }
+    
+    .grid-title.h3.pl-3.mb-0= @question.title
+    .question-body.p-3
+      p.mb-0= @question.body
+    .files= render partial: "attachments/attached_files", locals: { resource: @question }
+
+    .user-info.px-2.font-size-13.px-3
+      span.main-text-grey= "asked: #{@question.user.email}"
+    
+    .links
+      = render 'shared/links', links: @question.links
+
+  .question-errors
+    = render 'shared/errors', resource: @question
+  = form_with model: @question, class: 'hidden question-form', html: { id: "edit-question-#{@question.id}" } do |f|
+    .form-group
+      = f.label :title
+      = f.text_field :title, class: 'form-control'
+
+      = f.label :body
+      = f.text_area :body, class: 'form-control'
+
+      = f.fields_for :badge do |b|
+        p
+          = b.label :name, 'Badge title'
+          = b.text_field :name
+        p  
+          = b.label :image
+          = b.file_field :image, direct_upload: true
+          
+      = f.file_field :files, multiple: true, direct_upload: true, class: "mt-2"
+      
+      = render 'shared/links_form', form: f
+
+      = f.submit 'Save', class: 'btn btn-hover btn-sm btn-success float-right mx-2 mt-2'
+      = link_to 'Cancel', question_path(@question), class: "btn btn-hover float-right btn-sm btn-danger mt-2"
+
+  - if current_user
+    - commentable = question
+    = link_to 'Add comment', '#', class: 'add-comment-link', data: { commentable: "#{commentable.class.name.underscore}-#{commentable.id}" }
+
+  - if current_user&.author_of?(@question)
+    .control-panel.px-4.py-1.main-bg-dark.text-right
+      span= link_to "edit", '#', class: "edit-question-link btn btn-sm px-2 py-0 main-bg-yellow ml-1 border", data: { question_id: @question.id }
+
+      span= link_to "delete", question_path(@question), method: :delete, class: "btn btn-sm px-2 py-0 main-bg-red text-white border ml-1", data: { confirm: 'Are you sure?' }
+
+  .comments.border-bottom.border-top
+    details
+      summary = "Comments (#{question.comments.count})"
+    
+      = render 'shared/comments', commentable: question
+br
+
+
 .mt-2.pl-4.p-2.bg-light
   p.font-size-13.font-weight-bold.mb-0.letter-spacing ANSWERS
 

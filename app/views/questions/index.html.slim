@@ -1,7 +1,7 @@
 h1 Questions
 p= link_to 'Ask question', new_question_path, class: 'btn btn-hover main-bg-yellow shadow-sm'
 
-.bg-white.border
+.questions-list.bg-white.border
   - @questions.each do |question|
     .bg-white.p-4.border
       a= link_to question.title, question_path(question)
